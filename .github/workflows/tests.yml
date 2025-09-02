@@ -17,8 +17,8 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y make gcc xorg libxext-dev libbsd-dev
 
-      #- name: Build project
-      #  run: make
+      - name: Build project
+        run: make
 
       - name: Run tests
         run: ./tests/run_tests.sh

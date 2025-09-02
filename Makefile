@@ -9,6 +9,7 @@ LIB_DIR = lib
 LIBFT = $(LIB_DIR)/libft.a
 
 SRCS = \
+	$(SRC_DIR)/main.c \
 
 
 OBJS = $(SRCS:.c=.o)
