@@ -15,10 +15,10 @@ SRCS = \
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
-
+# Trocar "tput clear || true" por clear
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-	@clear
+	@tput clear || true
 	@echo "✅ ${NAME} is compiled."
 
 .c.o:
