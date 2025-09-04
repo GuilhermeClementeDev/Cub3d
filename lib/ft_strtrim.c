@@ -6,13 +6,13 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:15:26 by guclemen          #+#    #+#             */
-/*   Updated: 2024/09/30 10:15:27 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:55:04 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strcmp(const char s1, const char *s2)
+static int	ft_strc(const char s1, const char *s2)
 {
 	int	i;
 
@@ -52,11 +52,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	back = 0;
 	i = ft_strlen(s1);
 	front = 0;
-	while (s1[front] && ft_strcmp (s1[front], set))
+	while (s1[front] && ft_strc (s1[front], set))
 		front++;
 	if (s1[front] == '\0')
 		return (ptr = ft_calloc(1, 1));
-	while (--i != 0 && ft_strcmp (s1[i], set))
+	while (--i != 0 && ft_strc (s1[i], set))
 		back++;
 	ptr = (char *)ft_calloc ((ft_strlen(s1) + 1) - front - back, 1);
 	if (ptr != NULL)
