@@ -5,12 +5,15 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
 LIB_DIR = lib
+PARSE_DIR = parsing
+ERRO_DIR = error
 
 LIBFT = $(LIB_DIR)/libft.a
 
 SRCS = \
 	$(SRC_DIR)/main.c \
-
+	$(SRC_DIR)/$(ERRO_DIR)/ft_error.c \
+	$(SRC_DIR)/$(PARSE_DIR)/parsing.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/04 18:41:08 by guclemen         ###   ########.fr       */
+/*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
+/*   Updated: 2025/09/04 19:07:36 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int argc, char **argv)
+int	ft_simple_error(char *msg, int ret)
 {
-	ft_parsing(argc, argv);
-	return (0);
+	if (msg)
+	{
+		ft_putstr_fd("Error :(\n", 2);
+		ft_putstr_fd(msg, 2);
+	}
+	exit (ret);
 }
