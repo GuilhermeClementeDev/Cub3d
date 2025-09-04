@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 18:34:53 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/04 19:16:13 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/04 19:25:01 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_map_type(char **argv)
 
 	position = ft_strlen(argv[1]) - 4;
 	if (position >= 0)
-		if (!ft_strcmp(argv[position], ".cub"))
+		if (!ft_strcmp(&argv[1][position], ".cub"))
 			return ;
 	ft_simple_error("Invalid termination, must end with '.cub'\n" ,1);
 }
