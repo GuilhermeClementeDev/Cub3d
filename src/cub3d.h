@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/04 19:08:18 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/08 20:16:49 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,33 @@
 # define CUB3D_H
 
 # include "../lib/libft.h"
+
+typedef struct s_map
+{
+	char	**map;
+	int		height;
+	int		width;
+	int		malloc;
+
+	int		floor_color;
+	int		ceiling_color;
+
+	char	*no_texture;	// Norte
+	char	*so_texture;	// Sul
+	char	*we_texture;	// Oeste
+	char	*ea_texture;	// Leste
+}	t_map;
+
+typedef struct s_game
+{
+	t_map	map_game;
+
+	int		player_x;
+	int		player_y;
+	char	player_dir; // 'N', 'S', 'E', 'W'
+}	t_game;
+
+
 
 //PARSING
 
