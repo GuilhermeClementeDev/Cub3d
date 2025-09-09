@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/09 18:54:50 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:20:05 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct s_map
 	char	*floor_color;
 	char	*ceiling_color;
 
-	char	*no_texture;	// Norte
-	char	*so_texture;	// Sul
-	char	*we_texture;	// Oeste
-	char	*ea_texture;	// Leste
+	char	*no_texture;
+	char	*so_texture;
+	char	*we_texture;
+	char	*ea_texture;
 }	t_map;
 
 typedef struct s_game
@@ -40,7 +40,7 @@ typedef struct s_game
 
 	int		player_x;
 	int		player_y;
-	char	player_dir; // 'N', 'S', 'E', 'W'
+	char	player_dir;
 }	t_game;
 
 //PARSING
