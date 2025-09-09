@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   utilits.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 11:33:50 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/09 18:51:07 by guclemen         ###   ########.fr       */
+/*   Created: 2025/09/09 15:46:05 by guclemen          #+#    #+#             */
+/*   Updated: 2025/09/09 18:59:44 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_map_height(char **map_start, t_game *game)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	while (map_start[i])
 		i++;
-	return (i);
+	game->map_game.height = i;
+}
+
+void	ft_map_width(t_game *game)
+{
+	int	i;
+	int	max_width;
+	int	tmp_width;
+
+	i = 0;
+	max_width = 0;
+	while (game->map_game.map[i])
+	{
+		tmp_width = ft_strlen(game->map_game.map[i]);
+		if (tmp_width > max_width)
+			max_width = tmp_width;
+		i++;
+	}
+	game->map_game.width = max_width;
 }

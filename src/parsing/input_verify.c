@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   input_verify.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 11:33:50 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/09 18:51:07 by guclemen         ###   ########.fr       */
+/*   Created: 2025/09/09 11:42:17 by guclemen          #+#    #+#             */
+/*   Updated: 2025/09/09 19:01:19 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_map_type(char **argv, t_game *game)
 {
-	size_t	i;
+	int	position;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	position = ft_strlen(argv[1]) - 4;
+	if (position >= 0)
+		if (!ft_strcmp(&argv[1][position], ".cub"))
+			return ;
+	ft_error("Invalid termination, must end with '.cub'\n", 1, game);
 }
