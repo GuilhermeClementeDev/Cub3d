@@ -2,6 +2,7 @@
 
 # Caminho para o executável
 PROG=./cub3d
+FAILED=0
 
 # Função para rodar um teste
 run_test_extensao() {
@@ -23,6 +24,7 @@ run_test_extensao() {
         echo "   Esperado: '$esperado' Code $esperado_code"
 		echo "   Exit code: '$code'"
 		echo "   Obtido:   '$saida'"
+        FAILED=$((FAILED+1))
     fi
 }
 
@@ -32,3 +34,11 @@ run_test_extensao() {
 	run_test_extensao "Extensão errada" "mapa.txt" "Invalid termination" 1
 	run_test_extensao "Sem argumento" "" "Error" 1
 	run_test_extensao "Extensão quase válida" "mapa..cu" "Invalid termination" 1
+
+if [ $FAILED -eq 0 ]; then
+    echo "🎉 Todos os testes passaram!"
+else
+    echo "❌ $FAILED teste(s) falharam"
+fi
+    exit $FAILED
+
