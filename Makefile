@@ -27,6 +27,9 @@ $(NAME): $(OBJS) $(LIBFT)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
+valgrind: $(NAME)
+	valgrind --leak-check=full ./$(NAME) $(ARGS)
+
 $(LIBFT):
 	@make -C $(LIB_DIR)
 

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/08 20:16:49 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/09 10:08:45 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ typedef struct s_game
 //PARSING
 
 //parsing.c
-void	ft_parsing(int argc, char **argv);
+void	ft_parsing(int argc, char **argv, t_game *game);
 
 //ERROR
 
 //ft_error.c
-int		ft_simple_error(char *msg, int ret);
+void	ft_error(char *str, int n, t_game *game);
 
 
 #endif
