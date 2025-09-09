@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/09 18:57:41 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/09 19:12:53 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int	main(int argc, char **argv)
 	ft_build_game(game);
 	ft_parsing(argc, argv, game);
 	ft_print_game(game);
-	ft_error("JUST TESTING\n", 0, game);
+	ft_error("", 0, game);
 	return (0);
 }
