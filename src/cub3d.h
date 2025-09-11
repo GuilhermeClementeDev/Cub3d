@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 16:48:40 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:53:18 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ void	ft_read_file(char *argv, t_game *game);
 void	ft_map_height(char **map_start, t_game *game);
 void	ft_map_width(t_game *game);
 char	**ft_split_cub3d(char const *s, char c);
-//input_verify
+//input_verify.c
 void	ft_map_type(char **argv, t_game *game);
+//data_verification.c
+void	ft_verify_all_config(char **lines, t_game *game);
 
 //ERROR
 //ft_error.c

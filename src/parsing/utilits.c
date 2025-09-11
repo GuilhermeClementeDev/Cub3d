@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 15:46:05 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 17:15:49 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:28:28 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_map_width(t_game *game)
 	}
 	game->map_game.width = max_width;
 }
+
 static int	ft_words(const char *s, int c)
 {
 	unsigned int	i;
@@ -84,7 +85,7 @@ static void	ft_allocword(char **ptrs, const char *s, int c)
 		ft_strlcpy(ptrs[k], &s[start], (i - start) + 1);
 		k++;
 		if (!s[i])
-			break;
+			break ;
 		i++;
 	}
 	ptrs[k] = NULL;

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 16:57:57 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:52:10 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ static int	ft_is_config(char *line)
 	size = ft_strlen(line);
 	if (!line)
 		return (0);
-	if (size >= 1)
-	{
-		if (line[0] == 'C' && line[1] == ' ')
-			return (1);
-		if (line[0] == 'F' && line[1] == ' ')
-			return (1);
-	}
 	if (size >= 2)
 	{
-		if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
+		if (line[0] == 'C' && line[1] == ' ' && line[2])
 			return (1);
-		if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
+		if (line[0] == 'F' && line[1] == ' ' && line[2])
 			return (1);
-		if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
+	}
+	if (size >= 3)
+	{
+		if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ' && line[3])
 			return (1);
-		if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+		if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ' && line[3])
+			return (1);
+		if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ' && line[3])
+			return (1);
+		if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ' && line[3])
 			return (1);
 	}
 	return (0);
@@ -97,6 +97,7 @@ static void	ft_structuring_reading(char *file, t_game *game)
 				ft_config_line(lines[i], game);
 			else if (!config && lines[i][0] != '\n')
 			{
+				ft_verify_all_config(lines, game);
 				ft_create_map(&lines[i], game);
 				break ;
 			}
