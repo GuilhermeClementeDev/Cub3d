@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 17:59:37 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:15:45 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	ft_build_game(t_game *game)
 	game->map_game.ea_texture = NULL;
 	game->map_game.height = 0;
 	game->map_game.width = 0;
-	game->map_game.map_arrived = 0;
 	game->map_game.malloc = 0;
 }
 

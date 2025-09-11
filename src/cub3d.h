@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 17:53:18 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:40:58 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,35 @@
 # include "../lib/libft.h"
 # include <fcntl.h>
 
+typedef struct s_position
+{
+	int		width;
+	int		height;
+	int		count;
+	char	player_dir;
+}	t_player;
+
 typedef struct s_map
 {
 	char	**map;
 	int		height;
 	int		width;
-	int		malloc;
 
-	int		map_arrived;
+	int		malloc;
 
 	char	*floor_color;
 	char	*ceiling_color;
-
 	char	*no_texture;
 	char	*so_texture;
 	char	*we_texture;
 	char	*ea_texture;
+
+	t_player	player;
 }	t_map;
 
 typedef struct s_game
 {
 	t_map	map_game;
-
-	int		player_x;
-	int		player_y;
-	char	player_dir;
 }	t_game;
 
 //PARSING
@@ -53,9 +57,10 @@ void	ft_map_height(char **map_start, t_game *game);
 void	ft_map_width(t_game *game);
 char	**ft_split_cub3d(char const *s, char c);
 //input_verify.c
-void	ft_map_type(char **argv, t_game *game);
+void	ft_file_type(char **argv, t_game *game);
 //data_verification.c
 void	ft_verify_all_config(char **lines, t_game *game);
+void	ft_map_validation(t_game *game);
 
 //ERROR
 //ft_error.c
