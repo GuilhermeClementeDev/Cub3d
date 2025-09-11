@@ -1,3 +1,4 @@
 "1" erro de input
 "2" erro de leitura
 "3" ERRO de malloc
+"4" Erro de mapa / configs
