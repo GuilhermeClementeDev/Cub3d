@@ -18,6 +18,7 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/utilits.c \
 	$(SRC_DIR)/$(PARSE_DIR)/input_verify.c \
 	$(SRC_DIR)/$(PARSE_DIR)/data_verification.c \
+	$(SRC_DIR)/$(PARSE_DIR)/utilits2.c \
 
 OBJS = $(SRCS:.c=.o)
 

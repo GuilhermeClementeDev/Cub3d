@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 17:52:10 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/12 00:17:41 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void	ft_create_map(char **map_file, t_game *game)
 	int	i;
 
 	i = 0;
+	ft_verify_all_config(map_file, game);
 	ft_map_height(map_file, game);
 	game->map_game.map = malloc(sizeof(char *) * (game->map_game.height + 1));
 	if (!game->map_game.map)
@@ -97,7 +98,6 @@ static void	ft_structuring_reading(char *file, t_game *game)
 				ft_config_line(lines[i], game);
 			else if (!config && lines[i][0] != '\n')
 			{
-				ft_verify_all_config(lines, game);
 				ft_create_map(&lines[i], game);
 				break ;
 			}
