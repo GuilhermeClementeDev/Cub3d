@@ -57,6 +57,8 @@ run_test "Caracter inválido" "maps/tests/invalid_char.cub" 4
 run_test "Arquivo apenas com configs" "maps/tests/only_config.cub" 4
 run_test "Mapa sem jogador" "maps/tests/no_player.cub" 4
 run_test "Mapa com mais de um jogador" "maps/tests/multiple_players.cub" 4
+run_test "Textura inexistente" "maps/tests/xpm_missing_no.cub" 4
+run_test "Textura SO não XPM" "maps/tests/xpm_invalid_so.cub" 4
 
 # Resultado final
 echo
