@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/12 00:18:10 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:07:13 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	ft_player(int player_x, int player_y, t_game *game)
 	game->map_game.player.count++;
 	game->map_game.player.height = player_y;
 	game->map_game.player.width = player_x;
+	game->map_game.player.player_dir = game->map_game.map[player_y][player_x];
 }
 
 static void	ft_check_chars(char **map, int height, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 22:43:14 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:39:57 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ game->map_game.height);
 		ft_printf("%s\n", game->map_game.map[i++]);
 	ft_printf("Player x: %d\n", game->map_game.player.width);
 	ft_printf("Player y: %d\n", game->map_game.player.height);
+	ft_printf("Player y: %c\n", game->map_game.player.player_dir);
 }
 
 int	main(int argc, char **argv)

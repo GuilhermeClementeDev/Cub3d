@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/12 00:19:59 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/14 18:39:51 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_map
 	char		*so_texture;
 	char		*we_texture;
 	char		*ea_texture;
-
 	t_player	player;
 }	t_map;
 
