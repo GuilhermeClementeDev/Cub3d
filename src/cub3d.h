@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/14 18:39:51 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/14 19:46:35 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_map_width(t_game *game);
 char	**ft_split_cub3d(char const *s, char c);
 //utilis2.c
 char	**ft_copy_map(t_game *game);
+void	validate_xpm_file(char **lines, const char *path, t_game *game);
 //input_verify.c
 void	ft_file_type(char **argv, t_game *game);
 //data_verification.c
