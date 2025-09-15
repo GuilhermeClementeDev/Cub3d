@@ -1,0 +1,8 @@
+"1" erro de input
+"2" erro de leitura
+"3" ERRO de malloc
+"4" Erro de mapa / configs
+
+testes para fazer dps
+Cores
+Cores inválidas (ex: F 300,-10,50 ou formato errado) → exit=4.

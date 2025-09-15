@@ -5,12 +5,20 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
 LIB_DIR = lib
+PARSE_DIR = parsing
+ERRO_DIR = error
 
 LIBFT = $(LIB_DIR)/libft.a
 
 SRCS = \
 	$(SRC_DIR)/main.c \
-
+	$(SRC_DIR)/$(ERRO_DIR)/ft_error.c \
+	$(SRC_DIR)/$(PARSE_DIR)/parsing.c \
+	$(SRC_DIR)/$(PARSE_DIR)/read_file.c \
+	$(SRC_DIR)/$(PARSE_DIR)/utilits.c \
+	$(SRC_DIR)/$(PARSE_DIR)/input_verify.c \
+	$(SRC_DIR)/$(PARSE_DIR)/data_verification.c \
+	$(SRC_DIR)/$(PARSE_DIR)/utilits2.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,6 +31,9 @@ $(NAME): $(OBJS) $(LIBFT)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
+
+val: $(NAME)
+	valgrind --leak-check=full ./$(NAME) $(ARGS)
 
 $(LIBFT):
 	@make -C $(LIB_DIR)

@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/24 11:33:50 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/09 18:51:07 by guclemen         ###   ########.fr       */
+/*   Created: 2025/09/04 18:34:53 by guclemen          #+#    #+#             */
+/*   Updated: 2025/09/15 09:54:18 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_parsing(int argc, char **argv, t_game *game)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (argc != 2)
+		ft_error("Invalid number of inputs\n", 1, game);
+	ft_file_type_cub(argv, game);
+	ft_read_file(argv[1], game);
+	ft_map_validation(game);
 }

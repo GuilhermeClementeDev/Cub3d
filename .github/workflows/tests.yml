@@ -2,7 +2,6 @@ name: Cub3D Tests
 
 on:
   push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -15,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y make gcc xorg libxext-dev libbsd-dev
+        run: sudo apt-get update && sudo apt-get install -y make gcc xorg libxext-dev libbsd-dev valgrind
 
       - name: Build project
         run: make

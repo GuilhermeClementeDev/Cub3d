@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:08:28 by guclemen          #+#    #+#             */
-/*   Updated: 2024/09/23 13:09:21 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/04 18:52:58 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,7 @@ char	*ft_join_gnl(char *s1, char *s2);
 char	*ft_free(char *tmp);
 
 char	*ft_strdup_gnl(char *s);
+
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
