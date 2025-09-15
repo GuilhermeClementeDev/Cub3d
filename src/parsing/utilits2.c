@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 00:18:30 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/15 10:35:44 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/15 10:38:57 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	validate_xpm_file(char **lines, const char *path, t_game *game)
 	char	*xpm_line;
 
 	if (ft_file_type_xpm(path))
-		ft_free_call(lines, "Invalid config file termination, must end with '.xpm'.\n"\
-, game);
+		ft_free_call(lines, \
+"Invalid config file termination, must end with '.xpm'.\n", game);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		ft_free_call(lines, "Texture file does not exist or cannot be opened.\n"\
