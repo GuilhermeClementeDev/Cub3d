@@ -70,3 +70,5 @@ if [ $FAILED -eq 0 ]; then
 else
     echo "⚠️ $FAILED testes falharam"
 fi
+
+exit $FAILED
