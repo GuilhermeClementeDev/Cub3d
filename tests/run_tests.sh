@@ -14,7 +14,8 @@ run_test() {
 
     echo -n "[TEST] $name... "
 
-    output=$(valgrind --leak-check=full --error-exitcode=42 $PROG "$arg" 2>&1)
+    output=$(valgrind --quiet --leak-check=full --show-leak-kinds=all \
+    --errors-for-leak-kinds=all --error-exitcode=42 $PROG "$arg" 2>&1)
     status=$?
 
     if [ $status -eq 42 ]; then
@@ -59,6 +60,8 @@ run_test "Mapa sem jogador" "maps/tests/no_player.cub" 4
 run_test "Mapa com mais de um jogador" "maps/tests/multiple_players.cub" 4
 run_test "Textura inexistente" "maps/tests/xpm_missing_no.cub" 4
 run_test "Textura SO não XPM" "maps/tests/xpm_invalid_so.cub" 4
+run_test "Faltando extensão '.xpm'" "maps/tests/missing_xpm_extension.cub" 4
+run_test "Extensão xpm errada (.txt)" "maps/tests/invalid_xpm_extension.cub" 4
 
 # Resultado final
 echo

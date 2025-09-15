@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/14 19:44:32 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/14 20:47:44 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_verify_all_config(char **lines, t_game *game)
 	validate_xpm_file(lines, game->map_game.so_texture, game);
 	validate_xpm_file(lines, game->map_game.we_texture, game);
 	validate_xpm_file(lines, game->map_game.ea_texture, game);
-
 }
 
 static void	ft_player(int player_x, int player_y, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/14 19:46:35 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/15 10:26:34 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ char	**ft_split_cub3d(char const *s, char c);
 char	**ft_copy_map(t_game *game);
 void	validate_xpm_file(char **lines, const char *path, t_game *game);
 //input_verify.c
-void	ft_file_type(char **argv, t_game *game);
+void	ft_file_type_cub(char **argv, t_game *game);
+int		ft_file_type_xpm(const char *config_path);
 //data_verification.c
 void	ft_verify_all_config(char **lines, t_game *game);
 void	ft_map_validation(t_game *game);
@@ -68,5 +69,6 @@ void	ft_map_validation(t_game *game);
 //ft_error.c
 void	ft_error(char *str, int n, t_game *game);
 void	ft_free_matrix(char **matrix);
+void	ft_free_call(char **to_be_free, char *msg, t_game *game);
 
 #endif

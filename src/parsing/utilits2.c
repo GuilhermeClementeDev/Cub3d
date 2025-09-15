@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 00:18:30 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/14 19:58:51 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/15 10:35:44 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,31 @@ char	**ft_copy_map(t_game *game)
 	return (cp);
 }
 
-void validate_xpm_file(char **lines, const char *path, t_game *game)
+void	validate_xpm_file(char **lines, const char *path, t_game *game)
 {
 	int		fd;
-	char	*line;
+	char	*xpm_line;
 
+	if (ft_file_type_xpm(path))
+		ft_free_call(lines, "Invalid config file termination, must end with '.xpm'.\n"\
+, game);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_free_matrix(lines);
-		ft_error("Texture file does not exist or cannot be opened.\n", 4, game);
-	}
-	line = get_next_line(fd);
-	if (!line)
+		ft_free_call(lines, "Texture file does not exist or cannot be opened.\n"\
+, game);
+	xpm_line = get_next_line(fd);
+	if (!xpm_line)
 	{
 		close(fd);
-		ft_free_matrix(lines);
-		ft_error("Texture file is empty.\n", 4, game);
+		ft_free_call(lines, "Texture file is empty.\n", game);
 	}
-	if (!ft_strnstr(line, "/* XPM */", ft_strlen(line)) && !ft_strnstr(line, "/* XPM2 */", ft_strlen(line)))
+	if (!ft_strnstr(xpm_line, "/* XPM */", ft_strlen(xpm_line))
+		&& !ft_strnstr(xpm_line, "/* XPM2 */", ft_strlen(xpm_line)))
 	{
-		free(line);
-		ft_free_matrix(lines);
+		free(xpm_line);
 		close(fd);
-		ft_error("Texture file is not a valid XPM.\n", 4, game);
+		ft_free_call(lines, "Texture file is not a valid XPM.\n", game);
 	}
-	free(line);
+	free(xpm_line);
 	close(fd);
 }

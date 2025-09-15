@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/09 19:01:50 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/15 10:28:01 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,10 @@ void	ft_free_matrix(char **matrix)
 		k++;
 	}
 	free(matrix);
+}
+
+void	ft_free_call(char **to_be_free, char *msg, t_game *game)
+{
+	ft_free_matrix(to_be_free);
+	ft_error(msg, 4, game);
 }
