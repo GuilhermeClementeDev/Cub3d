@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 10:57:40 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:39:12 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	ft_config_line(char **config, int i, t_game *game)
 	else
 	{
 		ft_free_matrix(config);
-		ft_error("Duplicated config", 4, game);
+		ft_error("Duplicated config", 5, game);
 	}
 }
 

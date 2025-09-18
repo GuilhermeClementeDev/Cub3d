@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 10:57:04 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:39:29 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_verify_all_config(char **lines, t_game *game)
 		|| !game->map_game.floor_color)
 	{
 		ft_free_matrix(lines);
-		ft_error("Missing or invalid configuration", 4, game);
+		ft_error("Missing or invalid configuration", 5, game);
 	}
 	validate_xpm_file(lines, game->map_game.no_texture, game);
 	validate_xpm_file(lines, game->map_game.so_texture, game);
