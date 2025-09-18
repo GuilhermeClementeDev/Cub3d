@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilits2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
+/*   By: yfaustin <yfaustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 00:18:30 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/15 10:38:57 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 18:08:02 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,39 @@ void	validate_xpm_file(char **lines, const char *path, t_game *game)
 	}
 	free(xpm_line);
 	close(fd);
+}
+
+static void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+unsigned int	create_trgb(char *str)
+{
+	unsigned int	color;
+	char			**split_value;
+	t_color			trgb;
+
+	split_value = ft_split(str, ',');
+	if (!split_value || !split_value[0] || !split_value[1] || !split_value[2])
+	{
+		if (split_value)
+			free_split(split_value);
+		return (0);
+	}
+	trgb.t = 255;
+	trgb.r = ft_atoi(split_value[0]);
+	trgb.g = ft_atoi(split_value[1]);
+	trgb.b = ft_atoi(split_value[2]);
+	free_split(split_value);
+	color = (unsigned int)trgb.t << 24 | trgb.r << 16 | trgb.g << 8 | trgb.b;
+	return (color);
 }
