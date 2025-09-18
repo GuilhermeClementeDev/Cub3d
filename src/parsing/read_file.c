@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/14 19:11:51 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 10:57:40 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	ft_structuring_reading(char *file, t_game *game)
 
 	i = 0;
 	if (!file)
-		ft_error("Empty file.\n", 2, game);
+		ft_error("Empty file.", 2, game);
 	lines = ft_split_cub3d(file, '\n');
 	free(file);
 	while (lines[i])
@@ -122,7 +122,7 @@ void	ft_read_file(char *argv, t_game *game)
 	file = NULL;
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		ft_error("File couldn't be opened. Is the file correct?\n", 2, game);
+		ft_error("File couldn't be opened. Is the file correct?", 2, game);
 	while (1)
 	{
 		line = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/15 10:28:01 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 10:55:24 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void	ft_msg(char *str, int n)
 	if (n == 3)
 		ft_putstr_fd("Memory allocation failed.\n", std);
 	else
+	{
 		ft_putstr_fd(str, std);
+		ft_putstr_fd("\n", std);
+	}
 }
 
 void	ft_free_configs(t_game *game)

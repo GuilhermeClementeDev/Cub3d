@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 00:18:30 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/15 10:38:57 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 10:58:58 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,23 @@ void	validate_xpm_file(char **lines, const char *path, t_game *game)
 
 	if (ft_file_type_xpm(path))
 		ft_free_call(lines, \
-"Invalid config file termination, must end with '.xpm'.\n", game);
+"Invalid config file termination, must end with '.xpm'.", game);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		ft_free_call(lines, "Texture file does not exist or cannot be opened.\n"\
+		ft_free_call(lines, "Texture file does not exist or cannot be opened."\
 , game);
 	xpm_line = get_next_line(fd);
 	if (!xpm_line)
 	{
 		close(fd);
-		ft_free_call(lines, "Texture file is empty.\n", game);
+		ft_free_call(lines, "Texture file is empty.", game);
 	}
 	if (!ft_strnstr(xpm_line, "/* XPM */", ft_strlen(xpm_line))
 		&& !ft_strnstr(xpm_line, "/* XPM2 */", ft_strlen(xpm_line)))
 	{
 		free(xpm_line);
 		close(fd);
-		ft_free_call(lines, "Texture file is not a valid XPM.\n", game);
+		ft_free_call(lines, "Texture file is not a valid XPM.", game);
 	}
 	free(xpm_line);
 	close(fd);
