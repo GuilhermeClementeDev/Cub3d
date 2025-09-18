@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
+/*   By: yfaustin <yfaustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/14 18:39:57 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 18:05:29 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	ft_build_game(t_game *game)
 {
 	game->map_game.map = NULL;
-	game->map_game.floor_color = NULL;
-	game->map_game.ceiling_color = NULL;
+	game->map_game.floor_color = 0;
+	game->map_game.ceiling_color = 0;
 	game->map_game.no_texture = NULL;
 	game->map_game.so_texture = NULL;
 	game->map_game.we_texture = NULL;
