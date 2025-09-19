@@ -26,7 +26,10 @@ static void	ft_msg(char *str, int n)
 	if (n == 3)
 		ft_putstr_fd("Memory allocation failed.\n", std);
 	else
+	{
 		ft_putstr_fd(str, std);
+		ft_putstr_fd("\n", std);
+	}
 }
 
 void	ft_free_configs(t_game *game)
@@ -84,5 +87,5 @@ void	ft_free_matrix(char **matrix)
 void	ft_free_call(char **to_be_free, char *msg, t_game *game)
 {
 	ft_free_matrix(to_be_free);
-	ft_error(msg, 4, game);
+	ft_error(msg, 5, game);
 }

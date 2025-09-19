@@ -52,30 +52,30 @@ typedef struct s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}					t_color;
+}	
 
-// PARSING
-// parsing.c
-void				ft_parsing(int argc, char **argv, t_game *game);
-// read_file.c
-void				ft_read_file(char *argv, t_game *game);
-// utilis.c
-void				ft_map_height(char **map_start, t_game *game);
-void				ft_map_width(t_game *game);
-char				**ft_split_cub3d(char const *s, char c);
-// utilis2.c
-char				**ft_copy_map(t_game *game);
-void				validate_xpm_file(char **lines, const char *path,
-						t_game *game);
+//PARSING
+//parsing.c
+void	ft_parsing(int argc, char **argv, t_game *game);
+//read_file.c
+void	ft_read_file(char *argv, t_game *game);
+//utilis.c
+void	ft_map_height(char **map_start, t_game *game);
+void	ft_map_width(t_game *game);
+void	validate_xpm_file(char **lines, const char *path, t_game *game);
+//utilis2.c
+char	**ft_copy_map(t_game *game);
+char	**ft_split_cub3d(char const *s, char c);
+//input_verify.c
+void	ft_file_type_cub(char **argv, t_game *game);
+int		ft_file_type_xpm(const char *config_path);
 // rgb.c
 unsigned int		create_trgb(char *str);
-
-// input_verify.c
-void				ft_file_type_cub(char **argv, t_game *game);
-int					ft_file_type_xpm(const char *config_path);
-// data_verification.c
-void				ft_verify_all_config(char **lines, t_game *game);
-void				ft_map_validation(t_game *game);
+//data_verification.c
+void	ft_verify_all_config(char **lines, t_game *game);
+void	ft_map_validation(t_game *game);
+//flood_fill.c
+void	ft_check_walls(char **cp_map, t_game *game);
 
 // ERROR
 // ft_error.c

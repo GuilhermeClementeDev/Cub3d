@@ -2,11 +2,12 @@ NO ./textures/tests/north.xpm
 SO ./textures/tests/south.xpm
 WE ./textures/tests/west.xpm
 EA ./textures/tests/east.xpm
-
 F 220,100,0
 C 225,30,0
 
 111111
-1N0S01
 100001
+      
+10N001
+100011
 111111

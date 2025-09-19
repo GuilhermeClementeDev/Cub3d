@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:42:17 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/15 10:09:53 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 10:57:16 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_file_type_cub(char **argv, t_game *game)
 	if (position >= 0)
 		if (!ft_strcmp(&argv[1][position], ".cub"))
 			return ;
-	ft_error("Invalid termination, must end with '.cub'\n", 1, game);
+	ft_error("Invalid termination, must end with '.cub'", 1, game);
 }
 
 int	ft_file_type_xpm(const char *config_path)
