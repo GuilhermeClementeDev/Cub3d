@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 12:28:17 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/09/19 18:06:04 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ void				validate_xpm_file(char **lines, const char *path,
 						t_game *game);
 // rgb.c
 unsigned int		create_trgb(char *str);
-
 // input_verify.c
 void				ft_file_type_cub(char **argv, t_game *game);
 int					ft_file_type_xpm(const char *config_path);
 // data_verification.c
 void				ft_verify_all_config(char **lines, t_game *game);
 void				ft_map_validation(t_game *game);
+// flood_fill.c
+void				ft_check_walls(char **cp_map, t_game *game);
 
 // ERROR
 // ft_error.c

@@ -20,6 +20,7 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/data_verification.c \
 	$(SRC_DIR)/$(PARSE_DIR)/utilits2.c \
 	$(SRC_DIR)/$(PARSE_DIR)/rgb.c \
+	$(SRC_DIR)/$(PARSE_DIR)/flood_fill.c \
 
 OBJS = $(SRCS:.c=.o)
 
