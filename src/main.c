@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 18:05:29 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/09/19 18:46:32 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	ft_print_game(t_game *game)
 	ft_printf("SO texture: %s\n", game->map_game.so_texture);
 	ft_printf("WE texture: %s\n", game->map_game.we_texture);
 	ft_printf("EA texture: %s\n", game->map_game.ea_texture);
-	ft_printf("Floor color: %s\n", game->map_game.floor_color);
-	ft_printf("Ceiling color: %s\n", game->map_game.ceiling_color);
+	ft_printf("Floor color: %u (0x%x)\n", game->map_game.floor_color, \
+game->map_game.floor_color);
+	ft_printf("Ceiling color: %u (0x%x)\n", game->map_game.ceiling_color, \
+game->map_game.ceiling_color);
 	ft_printf("Map width: %d, height: %d\n", game->map_game.width, \
 game->map_game.height);
 	ft_printf("Map:\n");
