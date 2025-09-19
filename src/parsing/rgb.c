@@ -6,7 +6,7 @@
 /*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 12:14:43 by yfaustin          #+#    #+#             */
-/*   Updated: 2025/09/19 12:38:09 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/09/19 18:48:45 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ static int	validate_color_format(char *str)
 
 	comma_count = 0;
 	i = 0;
-	if (!str || str[0] != ' ')
+	if (!str)
+		return (0);
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (!str[i])
 		return (0);
 	while (str[i])
 	{
@@ -71,6 +75,13 @@ static int	validate_color_format(char *str)
 	return (comma_count == 2);
 }
 
+static char	*trim_leading_spaces(char *str)
+{
+	while (*str && *str == ' ')
+		str++;
+	return (str);
+}
+
 unsigned int	create_trgb(char *str)
 {
 	unsigned int	color;
@@ -79,7 +90,7 @@ unsigned int	create_trgb(char *str)
 
 	if (!validate_color_format(str))
 		return (0);
-	split_value = ft_split(str + 1, ',');
+	split_value = ft_split(trim_leading_spaces(str), ',');
 	if (!split_value || !split_value[0] || !split_value[1] || !split_value[2])
 	{
 		if (split_value)
