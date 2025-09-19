@@ -6,14 +6,14 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 20:39:32 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 08:42:32 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../lib/libft.h"
+# include "../libs/libft/libft.h"
 # include <fcntl.h>
 
 typedef struct s_position

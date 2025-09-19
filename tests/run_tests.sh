@@ -38,37 +38,37 @@ run_test() {
 # -------- TESTES -------- #
 
 # 0 → sucesso
-run_test "Mapa válido simples" "maps/tests/valid1.cub" 0
-run_test "Mapa válido complexo" "maps/tests/valid2.cub" 0
-run_test "Linhas em branco entre configs e mapa" "maps/tests/blank_lines.cub" 0
+run_test "Mapa válido simples" "assets/maps/tests/valid1.cub" 0
+run_test "Mapa válido complexo" "assets/maps/tests/valid2.cub" 0
+run_test "Linhas em branco entre configs e mapa" "assets/maps/tests/blank_lines.cub" 0
 
 # 1 → erro de input
-run_test "Extensão inválida" "maps/tests/invalid_extension.txt" 1
+run_test "Extensão inválida" "assets/maps/tests/invalid_extension.txt" 1
 
 # 2 → erro de leitura
 run_test "Arquivo inexistente" "nao_existe.cub" 2
-run_test "Arquivo vazio" "maps/tests/empty.cub" 2
+run_test "Arquivo vazio" "assets/maps/tests/empty.cub" 2
 
 # 4 → erro de mapa/configurações
-run_test "Mapa com quebra de linha ' '" "maps/tests/empty_line_space.cub" 4
-run_test "Mapa com quebra de linha \n" "maps/tests/invalid_newline.cub" 4
-run_test "Mapa não fechado" "maps/tests/invalid_open.cub" 4
-run_test "Caracter inválido" "maps/tests/invalid_char.cub" 4
-run_test "Arquivo apenas com configs" "maps/tests/only_config.cub" 4
-run_test "Mapa sem jogador" "maps/tests/no_player.cub" 4
-run_test "Mapa com mais de um jogador" "maps/tests/multiple_players.cub" 4
-run_test "Mapa com espaço no meio" "maps/tests/invalid_blank_spot.cub" 4
-run_test "Mapa agregação aberta" "maps/tests/open_room.cub" 4
-run_test "Mapa aberto em cima" "maps/tests/im_tired.cub" 4
+run_test "Mapa com quebra de linha ' '" "assets/maps/tests/empty_line_space.cub" 4
+run_test "Mapa com quebra de linha \n" "assets/maps/tests/invalid_newline.cub" 4
+run_test "Mapa não fechado" "assets/maps/tests/invalid_open.cub" 4
+run_test "Caracter inválido" "assets/maps/tests/invalid_char.cub" 4
+run_test "Arquivo apenas com configs" "assets/maps/tests/only_config.cub" 4
+run_test "Mapa sem jogador" "assets/maps/tests/no_player.cub" 4
+run_test "Mapa com mais de um jogador" "assets/maps/tests/multiple_players.cub" 4
+run_test "Mapa com espaço no meio" "assets/maps/tests/invalid_blank_spot.cub" 4
+run_test "Mapa agregação aberta" "assets/maps/tests/open_room.cub" 4
+run_test "Mapa aberto em cima" "assets/maps/tests/im_tired.cub" 4
 
 
 # 5 - erro ralacionado as configs
-run_test "Configuração ausente" "maps/tests/invalid_config.cub" 5
-run_test "Configuração duplicada" "maps/tests/invalid_duplicate.cub" 5
-run_test "Textura inexistente" "maps/tests/xpm_missing_no.cub" 5
-run_test "Textura SO não XPM" "maps/tests/xpm_invalid_so.cub" 5
-run_test "Faltando extensão '.xpm'" "maps/tests/missing_xpm_extension.cub" 5
-run_test "Extensão xpm errada (.txt)" "maps/tests/invalid_xpm_extension.cub" 5
+run_test "Configuração ausente" "assets/maps/tests/invalid_config.cub" 5
+run_test "Configuração duplicada" "assets/maps/tests/invalid_duplicate.cub" 5
+run_test "Textura inexistente" "assets/maps/tests/xpm_missing_no.cub" 5
+run_test "Textura SO não XPM" "assets/maps/tests/xpm_invalid_so.cub" 5
+run_test "Faltando extensão '.xpm'" "assets/maps/tests/missing_xpm_extension.cub" 5
+run_test "Extensão xpm errada (.txt)" "assets/maps/tests/invalid_xpm_extension.cub" 5
 
 # Resultado final
 echo
