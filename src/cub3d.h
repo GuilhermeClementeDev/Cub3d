@@ -6,7 +6,7 @@
 /*   By: yfaustin <yfaustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 18:07:25 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:28:17 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ char				**ft_split_cub3d(char const *s, char c);
 char				**ft_copy_map(t_game *game);
 void				validate_xpm_file(char **lines, const char *path,
 						t_game *game);
+// rgb.c
 unsigned int		create_trgb(char *str);
+
 // input_verify.c
 void				ft_file_type_cub(char **argv, t_game *game);
 int					ft_file_type_xpm(const char *config_path);
