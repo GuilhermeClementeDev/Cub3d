@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 13:14:56 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:39:32 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		ft_file_type_xpm(const char *config_path);
 //data_verification.c
 void	ft_verify_all_config(char **lines, t_game *game);
 void	ft_map_validation(t_game *game);
+//flood_fill.c
+void	ft_check_walls(char **cp_map, t_game *game);
 
 //ERROR
 //ft_error.c

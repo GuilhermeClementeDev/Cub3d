@@ -52,11 +52,15 @@ run_test "Arquivo vazio" "maps/tests/empty.cub" 2
 # 4 → erro de mapa/configurações
 run_test "Mapa com quebra de linha ' '" "maps/tests/empty_line_space.cub" 4
 run_test "Mapa com quebra de linha \n" "maps/tests/invalid_newline.cub" 4
-#run_test "Mapa não fechado" "maps/tests/invalid_open.cub" 4
+run_test "Mapa não fechado" "maps/tests/invalid_open.cub" 4
 run_test "Caracter inválido" "maps/tests/invalid_char.cub" 4
 run_test "Arquivo apenas com configs" "maps/tests/only_config.cub" 4
 run_test "Mapa sem jogador" "maps/tests/no_player.cub" 4
 run_test "Mapa com mais de um jogador" "maps/tests/multiple_players.cub" 4
+run_test "Mapa com espaço no meio" "maps/tests/invalid_blank_spot.cub" 4
+run_test "Mapa agregação aberta" "maps/tests/open_room.cub" 4
+run_test "Mapa aberto em cima" "maps/tests/im_tired.cub" 4
+
 
 # 5 - erro ralacionado as configs
 run_test "Configuração ausente" "maps/tests/invalid_config.cub" 5

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 13:14:20 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 20:40:12 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,6 @@ static void	ft_check_chars(char **map, int height, t_game *game)
 	}
 }
 
-static void	flood_fill(char **cp_map, int x, int y, t_game *game)
-{
-	if (y < 0 || !cp_map[y])
-		ft_error("Map is open 'y'", 4, game);
-	if (x < 0 || x >= (int)ft_strlen(cp_map[y]))
-		ft_error("Map is open 'x'", 4, game);
-	if (cp_map[y][x] == ' ')
-		ft_error("Map has a blank spot", 4, game);
-	if (cp_map[y][x] == '1' || cp_map[y][x] == 'F')
-		return ;
-	cp_map[y][x] = 'F';
-	flood_fill(cp_map, x + 1, y, game);
-	flood_fill(cp_map, x - 1, y, game);
-	flood_fill(cp_map, x, y + 1, game);
-	flood_fill(cp_map, x, y - 1, game);
-}
-
 void	ft_map_validation(t_game *game)
 {
 	char	**cp_map;
@@ -90,7 +73,6 @@ void	ft_map_validation(t_game *game)
 	if (game->map_game.player.count == 0)
 		ft_error("Invalid number of player", 4, game);
 	cp_map = ft_copy_map(game);
-	flood_fill(cp_map, game->map_game.player.width, \
-game->map_game.player.height, game);
+	ft_check_walls(cp_map, game);
 	ft_free_matrix(cp_map);
 }
