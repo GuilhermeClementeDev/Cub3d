@@ -7,6 +7,7 @@ MLXFLAGS = -L$(MLX_DIR) -Lmlx -lmlx_Linux -lX11 -lXext
 SRC_DIR = src
 LIB_DIR = libs/libft
 PARSE_DIR = parsing
+WIN_DIR = window
 ERRO_DIR = error
 MLX_DIR = libs/mlx
 
@@ -23,6 +24,7 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/data_verification.c \
 	$(SRC_DIR)/$(PARSE_DIR)/utilits2.c \
 	$(SRC_DIR)/$(PARSE_DIR)/flood_fill.c \
+	$(SRC_DIR)/$(WIN_DIR)/ft_window.c \
 
 OBJS = $(SRCS:.c=.o)
 

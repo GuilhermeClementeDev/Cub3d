@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 08:42:32 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:20:36 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../libs/libft/libft.h"
+# include "../libs/mlx/mlx.h"
 # include <fcntl.h>
 
 typedef struct s_position
@@ -23,6 +24,14 @@ typedef struct s_position
 	int			count;
 	char		player_dir;
 }	t_player;
+
+typedef struct s_sprite
+{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}	t_sprite;
 
 typedef struct s_map
 {
@@ -34,16 +43,20 @@ typedef struct s_map
 
 	char		*floor_color;
 	char		*ceiling_color;
-	char		*no_texture;
-	char		*so_texture;
-	char		*we_texture;
-	char		*ea_texture;
+
+	t_sprite	tex_no;
+	t_sprite	tex_so;
+	t_sprite	tex_we;
+	t_sprite	tex_ea;
+
 	t_player	player;
 }	t_map;
 
 typedef struct s_game
 {
 	t_map		map_game;
+	void		*mlx;
+	void		*win;
 }	t_game;
 
 //PARSING
@@ -67,10 +80,18 @@ void	ft_map_validation(t_game *game);
 //flood_fill.c
 void	ft_check_walls(char **cp_map, t_game *game);
 
+//WINDOW
+//window.c
+void	ft_open_mlx(t_game *game);
+void	ft_init_sprites(t_game *game);
+int		ft_x(t_game *game);
+
 //ERROR
 //ft_error.c
 void	ft_error(char *str, int n, t_game *game);
 void	ft_free_matrix(char **matrix);
 void	ft_free_call(char **to_be_free, char *msg, t_game *game);
+void	ft_error_mlx(char *msg, int n, t_game *game);
+void	ft_free_sprites(int n, t_game *game);
 
 #endif

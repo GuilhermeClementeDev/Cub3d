@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 12:39:12 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 10:47:13 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ static int	ft_is_config(char *line)
 
 static void	ft_config_line(char **config, int i, t_game *game)
 {
-	if (config[i][0] == 'N' && !game->map_game.no_texture)
-		game->map_game.no_texture = ft_strdup(&config[i][3]);
-	else if (config[i][0] == 'E' && !game->map_game.ea_texture)
-		game->map_game.ea_texture = ft_strdup(&config[i][3]);
-	else if (config[i][0] == 'S' && !game->map_game.so_texture)
-		game->map_game.so_texture = ft_strdup(&config[i][3]);
-	else if (config[i][0] == 'W' && !game->map_game.we_texture)
-		game->map_game.we_texture = ft_strdup(&config[i][3]);
+	if (config[i][0] == 'N' && !game->map_game.tex_no.path)
+		game->map_game.tex_no.path = ft_strdup(&config[i][3]);
+	else if (config[i][0] == 'E' && !game->map_game.tex_ea.path)
+		game->map_game.tex_ea.path = ft_strdup(&config[i][3]);
+	else if (config[i][0] == 'S' && !game->map_game.tex_so.path)
+		game->map_game.tex_so.path = ft_strdup(&config[i][3]);
+	else if (config[i][0] == 'W' && !game->map_game.tex_we.path)
+		game->map_game.tex_we.path = ft_strdup(&config[i][3]);
 	else if (config[i][0] == 'C' && !game->map_game.ceiling_color)
 		game->map_game.ceiling_color = ft_strdup(&config[i][2]);
 	else if (config[i][0] == 'F' && !game->map_game.floor_color)

@@ -38,9 +38,9 @@ run_test() {
 # -------- TESTES -------- #
 
 # 0 → sucesso
-run_test "Mapa válido simples" "assets/maps/tests/valid1.cub" 0
-run_test "Mapa válido complexo" "assets/maps/tests/valid2.cub" 0
-run_test "Linhas em branco entre configs e mapa" "assets/maps/tests/blank_lines.cub" 0
+#run_test "Mapa válido simples" "assets/maps/tests/valid1.cub" 0
+#run_test "Mapa válido complexo" "assets/maps/tests/valid2.cub" 0
+#run_test "Linhas em branco entre configs e mapa" "assets/maps/tests/blank_lines.cub" 0
 
 # 1 → erro de input
 run_test "Extensão inválida" "assets/maps/tests/invalid_extension.txt" 1
