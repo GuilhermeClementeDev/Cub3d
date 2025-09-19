@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 11:17:45 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 20:09:55 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,32 +92,4 @@ void	ft_free_call(char **to_be_free, char *msg, t_game *game)
 {
 	ft_free_matrix(to_be_free);
 	ft_error(msg, 5, game);
-}
-
-void	ft_error_mlx(char *msg, int n, t_game *game)
-{
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
-	ft_error(msg, n, game);
-}
-
-void	ft_free_sprites(int n, t_game *game)
-{
-	if (game->map_game.tex_no.img)
-		mlx_destroy_image(game->mlx, game->map_game.tex_no.img);
-	if (game->map_game.tex_so.img)
-		mlx_destroy_image(game->mlx, game->map_game.tex_so.img);
-	if (game->map_game.tex_we.img)
-		mlx_destroy_image(game->mlx, game->map_game.tex_we.img);
-	if (game->map_game.tex_ea.img)
-		mlx_destroy_image(game->mlx, game->map_game.tex_ea.img);
-	if (n != 0)
-		ft_error_mlx("Failed to generate image from xpm", n, game);
-	else
-		ft_error_mlx("Closing game...", n, game);
 }

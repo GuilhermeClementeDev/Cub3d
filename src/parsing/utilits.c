@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 15:46:05 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 12:57:38 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 20:22:24 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,49 +28,37 @@ void	ft_map_height(char **map_start, t_game *game)
 	game->map_game.height = last_line + 1;
 }
 
-void	ft_map_width(t_game *game)
+static int	validate_first_xpm_line(char *line)
 {
-	int	i;
-	int	max_width;
-	int	tmp_width;
-
-	i = 0;
-	max_width = 0;
-	while (game->map_game.map[i])
-	{
-		tmp_width = ft_strlen(game->map_game.map[i]);
-		if (tmp_width > max_width)
-			max_width = tmp_width;
-		i++;
-	}
-	game->map_game.width = max_width;
+	if (!line)
+		return (0);
+	if (!ft_strnstr(line, "/* XPM */", ft_strlen(line))
+		&& !ft_strnstr(line, "/* XPM2 */", ft_strlen(line)))
+		return (0);
+	return (1);
 }
 
 void	validate_xpm_file(char **lines, const char *path, t_game *game)
 {
 	int		fd;
 	char	*xpm_line;
+	int		is_valid;
 
 	if (ft_file_type_xpm(path))
 		ft_free_call(lines, \
 "Invalid config file termination, must end with '.xpm'.", game);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		ft_free_call(lines, "Texture file does not exist or cannot be opened."\
-, game);
+		ft_free_call(lines, \
+"Texture file does not exist or cannot be opened.", game);
 	xpm_line = get_next_line(fd);
-	if (!xpm_line)
-	{
-		close(fd);
-		ft_free_call(lines, "Texture file is empty.", game);
-	}
-	if (!ft_strnstr(xpm_line, "/* XPM */", ft_strlen(xpm_line))
-		&& !ft_strnstr(xpm_line, "/* XPM2 */", ft_strlen(xpm_line)))
+	is_valid = validate_first_xpm_line(xpm_line);
+	while (xpm_line)
 	{
 		free(xpm_line);
-		close(fd);
-		ft_free_call(lines, "Texture file is not a valid XPM.", game);
+		xpm_line = get_next_line(fd);
 	}
-	free(xpm_line);
 	close(fd);
+	if (!is_valid)
+		ft_free_call(lines, "Texture file is not a valid XPM.", game);
 }

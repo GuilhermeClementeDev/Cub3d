@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 12:20:36 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 20:42:15 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_map
 {
 	char		**map;
 	int			height;
-	int			width;
 
 	int			malloc;
 
@@ -57,6 +56,10 @@ typedef struct s_game
 	t_map		map_game;
 	void		*mlx;
 	void		*win;
+	int			screen_width;
+	int			screen_height;
+	t_sprite	background;
+
 }	t_game;
 
 //PARSING
@@ -66,7 +69,6 @@ void	ft_parsing(int argc, char **argv, t_game *game);
 void	ft_read_file(char *argv, t_game *game);
 //utilis.c
 void	ft_map_height(char **map_start, t_game *game);
-void	ft_map_width(t_game *game);
 void	validate_xpm_file(char **lines, const char *path, t_game *game);
 //utilis2.c
 char	**ft_copy_map(t_game *game);
@@ -83,7 +85,6 @@ void	ft_check_walls(char **cp_map, t_game *game);
 //WINDOW
 //window.c
 void	ft_open_mlx(t_game *game);
-void	ft_init_sprites(t_game *game);
 int		ft_x(t_game *game);
 
 //ERROR
@@ -91,6 +92,7 @@ int		ft_x(t_game *game);
 void	ft_error(char *str, int n, t_game *game);
 void	ft_free_matrix(char **matrix);
 void	ft_free_call(char **to_be_free, char *msg, t_game *game);
+//ft_error2.c
 void	ft_error_mlx(char *msg, int n, t_game *game);
 void	ft_free_sprites(int n, t_game *game);
 

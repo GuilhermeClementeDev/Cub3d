@@ -6,78 +6,84 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 10:04:13 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 13:15:43 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 20:48:54 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_init_sprites(t_game *game)
+static void	ft_init_sprites(t_game *game)
 {
-	game->map_game.tex_no.img = mlx_xpm_file_to_image(game->mlx,
-		game->map_game.tex_no.path,
-		&game->map_game.tex_no.width,
-		&game->map_game.tex_no.height);
-	game->map_game.tex_so.img = mlx_xpm_file_to_image(game->mlx,
-		game->map_game.tex_so.path,
-		&game->map_game.tex_so.width,
-		&game->map_game.tex_so.height);
-	game->map_game.tex_we.img = mlx_xpm_file_to_image(game->mlx,
-		game->map_game.tex_we.path,
-		&game->map_game.tex_we.width,
-		&game->map_game.tex_we.height);
-	game->map_game.tex_ea.img = mlx_xpm_file_to_image(game->mlx,
-		game->map_game.tex_ea.path,
-		&game->map_game.tex_ea.width,
-		&game->map_game.tex_ea.height);
+	game->map_game.tex_no.img = mlx_xpm_file_to_image(game->mlx, \
+game->map_game.tex_no.path, &game->map_game.tex_no.width, \
+&game->map_game.tex_no.height);
+	game->map_game.tex_so.img = mlx_xpm_file_to_image(game->mlx, \
+game->map_game.tex_so.path, &game->map_game.tex_so.width, \
+&game->map_game.tex_so.height);
+	game->map_game.tex_we.img = mlx_xpm_file_to_image(game->mlx, \
+game->map_game.tex_we.path, &game->map_game.tex_we.width, \
+&game->map_game.tex_we.height);
+	game->map_game.tex_ea.img = mlx_xpm_file_to_image(game->mlx, \
+game->map_game.tex_ea.path, &game->map_game.tex_ea.width, \
+&game->map_game.tex_ea.height);
+	game->background.img = NULL;
+	game->background.path = NULL;
 	if (!game->map_game.tex_no.img || !game->map_game.tex_so.img
 		|| !game->map_game.tex_we.img || !game->map_game.tex_ea.img)
 		ft_free_sprites(5, game);
 }
 
-void	ft_render_background(t_game *game, int width, int height)
+static void	ft_create_background(t_game *game)
 {
-	int	x;
-	int	y;
-	int	half_height;
-	int	color_floor;
-	int	color_ceiling;
+	int				y;
+	int				x;
+	unsigned int	*line;
+	int				line_len;
 
-	color_floor = 0x00FF00;
-	color_ceiling = 0x87CEEB;
-
-	half_height = height / 2;
+	game->background.img = mlx_new_image(game->mlx, \
+game->screen_width, game->screen_height);
+	game->background.path = mlx_get_data_addr(game->background.img, \
+&game->background.width, &line_len, &game->background.height);
 	y = 0;
-	while (y < height)
+	while (y < game->screen_height)
 	{
+		line = (unsigned int *)(game->background.path + y * line_len);
 		x = 0;
-		while (x < width)
+		while (x < game->screen_width)
 		{
-			if (y < half_height)
-				mlx_pixel_put(game->mlx, game->win, x, y, color_ceiling);
+			if (y < game->screen_height / 2)
+				line[x] = 0x87CEEB;
 			else
-				mlx_pixel_put(game->mlx, game->win, x, y, color_floor);
+				line[x] = 0x00FF00;
 			x++;
 		}
 		y++;
 	}
 }
 
+void	ft_render_background(t_game *game)
+{
+	if (!game->background.img)
+		ft_create_background(game);
+	if (game->background.img)
+		mlx_put_image_to_window(game->mlx,
+			game->win, game->background.img, 0, 0);
+}
+
 void	ft_open_mlx(t_game *game)
 {
-	int	screen_width = 0;
-	int	screen_height = 0;
-
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		ft_error("Error of mlx_init.", 6, game);
-	mlx_get_screen_size(game->mlx, &screen_width, &screen_height);
-	screen_width *= 0.99;
-	screen_height *= 0.91;
-	game->win = mlx_new_window(game->mlx, screen_width, screen_height, "Cub3d");
+	mlx_get_screen_size(game->mlx, &game->screen_width, &game->screen_height);
+	game->screen_width *= 0.99;
+	game->screen_height *= 0.91;
+	game->win = mlx_new_window(game->mlx, \
+game->screen_width, game->screen_height, "Cub3d");
 	if (game->win == NULL)
 		ft_error_mlx("Error creating a window.", 6, game);
-	ft_render_background(game, screen_width, screen_height);
+	ft_init_sprites(game);
+	ft_render_background(game);
 }
 
 int	ft_x(t_game *game)

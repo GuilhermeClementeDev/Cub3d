@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 10:47:13 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 19:10:18 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	ft_create_map(char **map_file, int i, t_game *game)
 	}
 	game->map_game.map[k] = NULL;
 	game->map_game.malloc = 1;
-	ft_map_width(game);
 }
 
 static void	ft_structuring_reading(char *file, t_game *game)

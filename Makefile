@@ -17,6 +17,7 @@ LIBFT = $(LIB_DIR)/libft.a
 SRCS = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/$(ERRO_DIR)/ft_error.c \
+	$(SRC_DIR)/$(ERRO_DIR)/ft_error2.c \
 	$(SRC_DIR)/$(PARSE_DIR)/parsing.c \
 	$(SRC_DIR)/$(PARSE_DIR)/read_file.c \
 	$(SRC_DIR)/$(PARSE_DIR)/utilits.c \
