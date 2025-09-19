@@ -1,7 +1,8 @@
 "1" erro de input
 "2" erro de leitura
 "3" ERRO de malloc
-"4" Erro de mapa / configs
+"4" Erro de mapa
+"5" erro configs
 
 testes para fazer dps
 Cores

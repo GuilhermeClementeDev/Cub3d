@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 15:46:05 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/11 17:28:28 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:57:38 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,62 +46,31 @@ void	ft_map_width(t_game *game)
 	game->map_game.width = max_width;
 }
 
-static int	ft_words(const char *s, int c)
+void	validate_xpm_file(char **lines, const char *path, t_game *game)
 {
-	unsigned int	i;
-	unsigned int	count;
+	int		fd;
+	char	*xpm_line;
 
-	i = 0;
-	count = 1;
-	if (!s || !*s)
-		return (0);
-	while (s[i])
+	if (ft_file_type_xpm(path))
+		ft_free_call(lines, \
+"Invalid config file termination, must end with '.xpm'.", game);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		ft_free_call(lines, "Texture file does not exist or cannot be opened."\
+, game);
+	xpm_line = get_next_line(fd);
+	if (!xpm_line)
 	{
-		if (s[i] == c)
-			count++;
-		i++;
+		close(fd);
+		ft_free_call(lines, "Texture file is empty.", game);
 	}
-	if (s[i] == '\0')
-		count++;
-	if (s[0] != c)
-		count++;
-	return (count);
-}
-
-static void	ft_allocword(char **ptrs, const char *s, int c)
-{
-	unsigned int	i;
-	unsigned int	k;
-	unsigned int	start;
-
-	i = 0;
-	k = 0;
-	while (1)
+	if (!ft_strnstr(xpm_line, "/* XPM */", ft_strlen(xpm_line))
+		&& !ft_strnstr(xpm_line, "/* XPM2 */", ft_strlen(xpm_line)))
 	{
-		start = i;
-		while (s[i] && s[i] != c)
-			i++;
-		ptrs[k] = (char *)ft_calloc((i - start) + 1, 1);
-		ft_strlcpy(ptrs[k], &s[start], (i - start) + 1);
-		k++;
-		if (!s[i])
-			break ;
-		i++;
+		free(xpm_line);
+		close(fd);
+		ft_free_call(lines, "Texture file is not a valid XPM.", game);
 	}
-	ptrs[k] = NULL;
-}
-
-char	**ft_split_cub3d(char const *s, char c)
-{
-	char			**ptrs;
-	unsigned int	words;
-
-	if (!s)
-		return (NULL);
-	words = ft_words(s, c);
-	ptrs = (char **)ft_calloc(words + 1, sizeof(char *));
-	if (!ptrs)
-		return (NULL);
-	ft_allocword(ptrs, s, c);
-	return (ptrs);
+	free(xpm_line);
+	close(fd);
 }
