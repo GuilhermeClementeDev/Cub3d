@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
+/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 12:40:44 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 18:11:39 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ void	ft_free_configs(t_game *game)
 		free(game->map_game.ea_texture);
 	if (game->map_game.we_texture)
 		free(game->map_game.we_texture);
-	if (game->map_game.floor_color)
-		free(game->map_game.floor_color);
-	if (game->map_game.ceiling_color)
-		free(game->map_game.ceiling_color);
 }
 
 void	ft_error(char *str, int n, t_game *game)
