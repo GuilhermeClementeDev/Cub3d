@@ -24,6 +24,7 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/input_verify.c \
 	$(SRC_DIR)/$(PARSE_DIR)/data_verification.c \
 	$(SRC_DIR)/$(PARSE_DIR)/utilits2.c \
+	$(SRC_DIR)/$(PARSE_DIR)/rgb.c \
 	$(SRC_DIR)/$(PARSE_DIR)/flood_fill.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_window.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_mini_map.c \
@@ -63,3 +64,16 @@ fclean: clean
 	@echo "🗑️ Program and objects removed."
 
 re: fclean all
+
+test: $(NAME)
+	@echo "🧪 Rodando testes localmente..."
+	@chmod +x tests/run_tests.sh
+	@tests/run_tests.sh
+
+docker-test:
+	@echo "🐳 Rodando testes no Docker..."
+	@docker build -t cub3d-tests .
+	@docker run --rm cub3d-tests tests/run_tests.sh
+	@docker rmi cub3d-tests
+
+.PHONY: all clean fclean re val test docker-test

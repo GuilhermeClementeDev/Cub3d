@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 23:32:39 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:57:57 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static unsigned int	get_map_color_at_pixel(t_game *game, int x, int y, int half)
 	map_y = game->map_game.player.height - half / 20 + y / 20;
 	if ((x - half) * (x - half) + (y - half) * (y - half) <= half * half)
 		return (get_map_pixel_color(game, map_x, map_y));
-	return (CEU_CLARO);
+	return (game->map_game.ceiling_color);
 }
 
 static void	draw_minimap_pixels(t_game *game)

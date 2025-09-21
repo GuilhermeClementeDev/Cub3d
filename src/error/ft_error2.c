@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 20:09:32 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 20:09:46 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/21 00:04:13 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_free_sprites(int n, t_game *game)
 {
 	if (game->background.img)
 		mlx_destroy_image(game->mlx, game->background.img);
+	if (game->minimap.img)
+		mlx_destroy_image(game->mlx, game->minimap.img);
 	if (game->map_game.tex_no.img)
 		mlx_destroy_image(game->mlx, game->map_game.tex_no.img);
 	if (game->map_game.tex_so.img)

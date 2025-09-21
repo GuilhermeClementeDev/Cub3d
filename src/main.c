@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 19:00:21 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:59:56 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	ft_build_game(t_game *game)
 {
 	game->map_game.map = NULL;
-	game->map_game.floor_color = NULL;
-	game->map_game.ceiling_color = NULL;
+	game->map_game.floor_color = 0;
+	game->map_game.ceiling_color = 0;
 	game->map_game.tex_no.path = NULL;
 	game->map_game.tex_so.path = NULL;
 	game->map_game.tex_we.path = NULL;

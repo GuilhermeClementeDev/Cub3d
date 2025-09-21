@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 10:04:13 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 21:16:19 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:58:34 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ game->background.line_len);
 		while (x < game->screen_width)
 		{
 			if (y < game->screen_height / 2)
-				line[x] = 0x87CEEB;
+				line[x] = game->map_game.ceiling_color;
 			else
-				line[x] = 0x00FF00;
+				line[x] = game->map_game.floor_color;
 			x++;
 		}
 		y++;
