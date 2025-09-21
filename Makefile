@@ -26,6 +26,7 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/utilits2.c \
 	$(SRC_DIR)/$(PARSE_DIR)/flood_fill.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_window.c \
+	$(SRC_DIR)/$(WIN_DIR)/ft_mini_map.c \
 
 OBJS = $(SRCS:.c=.o)
 

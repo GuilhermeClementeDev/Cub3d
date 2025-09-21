@@ -6,12 +6,19 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 20:42:15 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:32:34 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# define MINIMAP_SIZE 250
+# define RED 0xFF0000
+# define BLACK 0x000000
+# define WHITE 0xFFFFFF
+# define GREY 0x373737
+# define CEU_CLARO 0x87CEEB
 
 # include "../libs/libft/libft.h"
 # include "../libs/mlx/mlx.h"
@@ -31,6 +38,7 @@ typedef struct s_sprite
 	char	*path;
 	int		width;
 	int		height;
+	int		line_len;
 }	t_sprite;
 
 typedef struct s_map
@@ -59,6 +67,7 @@ typedef struct s_game
 	int			screen_width;
 	int			screen_height;
 	t_sprite	background;
+	t_sprite	minimap;
 
 }	t_game;
 
@@ -86,6 +95,8 @@ void	ft_check_walls(char **cp_map, t_game *game);
 //window.c
 void	ft_open_mlx(t_game *game);
 int		ft_x(t_game *game);
+//ft_mini_map.c
+void	ft_draw_minimap(t_game *game);
 
 //ERROR
 //ft_error.c

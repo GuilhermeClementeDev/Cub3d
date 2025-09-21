@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 10:04:13 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 20:48:54 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:16:19 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ static void	ft_create_background(t_game *game)
 	int				y;
 	int				x;
 	unsigned int	*line;
-	int				line_len;
 
 	game->background.img = mlx_new_image(game->mlx, \
 game->screen_width, game->screen_height);
 	game->background.path = mlx_get_data_addr(game->background.img, \
-&game->background.width, &line_len, &game->background.height);
+&game->background.width, &game->background.line_len, \
+&game->background.height);
 	y = 0;
 	while (y < game->screen_height)
 	{
-		line = (unsigned int *)(game->background.path + y * line_len);
+		line = (unsigned int *)(game->background.path + y * \
+game->background.line_len);
 		x = 0;
 		while (x < game->screen_width)
 		{
@@ -84,6 +85,7 @@ game->screen_width, game->screen_height, "Cub3d");
 		ft_error_mlx("Error creating a window.", 6, game);
 	ft_init_sprites(game);
 	ft_render_background(game);
+	ft_draw_minimap(game);
 }
 
 int	ft_x(t_game *game)
