@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
+/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 18:11:39 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:56:30 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ static int	ft_is_config(char *line)
 
 static void	ft_config_line(char **config, int i, t_game *game)
 {
-	if (config[i][0] == 'N' && !game->map_game.no_texture)
-		game->map_game.no_texture = ft_strdup(&config[i][3]);
-	else if (config[i][0] == 'E' && !game->map_game.ea_texture)
-		game->map_game.ea_texture = ft_strdup(&config[i][3]);
-	else if (config[i][0] == 'S' && !game->map_game.so_texture)
-		game->map_game.so_texture = ft_strdup(&config[i][3]);
-	else if (config[i][0] == 'W' && !game->map_game.we_texture)
-		game->map_game.we_texture = ft_strdup(&config[i][3]);
+	if (config[i][0] == 'N' && !game->map_game.tex_no.path)
+		game->map_game.tex_no.path = ft_strdup(&config[i][3]);
+	else if (config[i][0] == 'E' && !game->map_game.tex_ea.path)
+		game->map_game.tex_ea.path = ft_strdup(&config[i][3]);
+	else if (config[i][0] == 'S' && !game->map_game.tex_so.path)
+		game->map_game.tex_so.path = ft_strdup(&config[i][3]);
+	else if (config[i][0] == 'W' && !game->map_game.tex_we.path)
+		game->map_game.tex_we.path = ft_strdup(&config[i][3]);
 	else if (config[i][0] == 'C' && !game->map_game.ceiling_color)
 		game->map_game.ceiling_color = create_trgb(&config[i][2]);
 	else if (config[i][0] == 'F' && !game->map_game.floor_color)
@@ -81,7 +81,6 @@ static void	ft_create_map(char **map_file, int i, t_game *game)
 	}
 	game->map_game.map[k] = NULL;
 	game->map_game.malloc = 1;
-	ft_map_width(game);
 }
 
 static void	ft_structuring_reading(char *file, t_game *game)

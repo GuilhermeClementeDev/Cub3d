@@ -20,4 +20,4 @@ jobs:
 
       - name: Rodar a Norminette com flags
         run: |
-          norminette -R CheckForbiddenSourceHeader
+          norminette -R CheckForbiddenSourceHeader src libs/libft

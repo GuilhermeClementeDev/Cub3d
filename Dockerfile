@@ -5,6 +5,11 @@ RUN apt-get update && apt-get install -y \
     make \
     valgrind \
     libc6-dev \
+    libx11-dev \
+    libxext-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    libbsd-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

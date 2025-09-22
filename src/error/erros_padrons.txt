@@ -3,6 +3,7 @@
 "3" ERRO de malloc
 "4" Erro de mapa
 "5" erro configs
+"6" erro ao gerar janela
 
 testes para fazer dps
 Cores

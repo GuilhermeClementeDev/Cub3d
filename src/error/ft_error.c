@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
+/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 18:11:39 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/09/21 00:00:28 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static void	ft_msg(char *str, int n)
 
 void	ft_free_configs(t_game *game)
 {
-	if (game->map_game.no_texture)
-		free(game->map_game.no_texture);
-	if (game->map_game.so_texture)
-		free(game->map_game.so_texture);
-	if (game->map_game.ea_texture)
-		free(game->map_game.ea_texture);
-	if (game->map_game.we_texture)
-		free(game->map_game.we_texture);
+	if (game->map_game.tex_no.path)
+		free(game->map_game.tex_no.path);
+	if (game->map_game.tex_so.path)
+		free(game->map_game.tex_so.path);
+	if (game->map_game.tex_ea.path)
+		free(game->map_game.tex_ea.path);
+	if (game->map_game.tex_we.path)
+		free(game->map_game.tex_we.path);
 }
 
 void	ft_error(char *str, int n, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/18 20:40:12 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/09/19 10:49:20 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	ft_verify_all_config(char **lines, t_game *game)
 {
-	if (!game->map_game.no_texture || !game->map_game.so_texture
-		|| !game->map_game.we_texture
-		|| !game->map_game.ea_texture
+	if (!game->map_game.tex_no.path || !game->map_game.tex_so.path
+		|| !game->map_game.tex_we.path
+		|| !game->map_game.tex_ea.path
 		|| !game->map_game.ceiling_color
 		|| !game->map_game.floor_color)
 	{
 		ft_free_matrix(lines);
 		ft_error("Missing or invalid configuration", 5, game);
 	}
-	validate_xpm_file(lines, game->map_game.no_texture, game);
-	validate_xpm_file(lines, game->map_game.so_texture, game);
-	validate_xpm_file(lines, game->map_game.we_texture, game);
-	validate_xpm_file(lines, game->map_game.ea_texture, game);
+	validate_xpm_file(lines, game->map_game.tex_no.path, game);
+	validate_xpm_file(lines, game->map_game.tex_so.path, game);
+	validate_xpm_file(lines, game->map_game.tex_we.path, game);
+	validate_xpm_file(lines, game->map_game.tex_ea.path, game);
 }
 
 static void	ft_player(int player_x, int player_y, t_game *game)
