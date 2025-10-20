@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 10:04:13 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 23:58:34 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:08:48 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_open_mlx(t_game *game)
 	if (game->mlx == NULL)
 		ft_error("Error of mlx_init.", 6, game);
 	mlx_get_screen_size(game->mlx, &game->screen_width, &game->screen_height);
+	if (game->screen_width > 1920)
+		game->screen_width = 1920;
 	game->screen_width *= 0.99;
 	game->screen_height *= 0.91;
 	game->win = mlx_new_window(game->mlx, \
