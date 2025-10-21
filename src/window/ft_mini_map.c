@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/30 18:00:23 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:49:54 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static unsigned int	get_map_color_at_pixel(t_game *game, int x, int y, int half)
 	(y * game->background.line_len) + (x * (game->background.width / 8))));
 }
 
-static void	draw_minimap_pixels(t_game *game)
+void	draw_minimap_pixels(t_game *game)
 {
 	int				x;
 	int				y;
@@ -58,7 +58,7 @@ static void	draw_minimap_pixels(t_game *game)
 	}
 }
 
-static void	draw_player_minimap(t_game *game)
+void	draw_player_minimap(t_game *game)
 {
 	int				half;
 	unsigned int	*line;
@@ -83,10 +83,7 @@ static void	draw_player_minimap(t_game *game)
 
 void	ft_draw_minimap(t_game *game)
 {
-	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-	game->minimap.path = mlx_get_data_addr(game->minimap.img, \
-&game->minimap.width, &game->minimap.line_len, &game->minimap.height);
-	draw_minimap_pixels(game);
-	draw_player_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 10, 10);
+	draw_minimap_pixels(game); // opcional: se quiser o mapa estático só uma vez, retire esta linha
+    draw_player_minimap(game);
+    mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 23:59:56 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:55:03 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ int	main(int argc, char **argv)
 	ft_build_game(game);
 	ft_parsing(argc, argv, game);
 	ft_open_mlx(game);
-	mlx_hook(game->win, 17, 0, ft_x, game);
-	mlx_loop(game->mlx);
+	mlx_loop_hook(game->mlx, update, game);
+    mlx_hook(game->win, 2, 1L<<0, key_press, game);
+    mlx_hook(game->win, 3, 1L<<1, key_release, game);
+    mlx_hook(game->win, 17, 0, ft_x, game);
+    mlx_loop(game->mlx);
 	ft_print_game(game);
 	ft_error("", 0, game);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/20 15:51:39 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:31:02 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define MINIMAP_SIZE 250
-# define MOVE_SPEED 0.05
-# define ROT_SPEED 0.03
+# define MOVE_SPEED 0.15
+# define ROT_SPEED 25
 # define RED 0xFF0000
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -24,8 +24,19 @@
 # include "../libs/libft/libft.h"
 # include "../libs/mlx/mlx.h"
 # include <fcntl.h>
+# include <math.h>
 
-typedef struct s_position
+typedef struct s_keys
+{
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+}	t_keys;
+
+typedef struct s_player
 {
 	double			width;
 	double			height;
@@ -35,7 +46,7 @@ typedef struct s_position
 	double			dirY;
 	double			planeX;
 	double			planeY;
-}					t_player;
+}	t_player;
 
 typedef struct s_sprite
 {
@@ -70,7 +81,7 @@ typedef struct s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}					t_color;
+}	t_color;
 
 typedef struct s_game
 {
@@ -81,8 +92,9 @@ typedef struct s_game
 	int			screen_height;
 	t_sprite	background;
 	t_sprite	minimap;
-
+	t_keys		keys;
 }	t_game;
+
 
 //PARSING
 //parsing.c
@@ -121,5 +133,12 @@ void			ft_free_call(char **to_be_free, char *msg, t_game *game);
 //ft_error2.c
 void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
+
+int key_release(int key, t_game *game);
+int key_press(int key, t_game *game);
+int update(void *param);
+void draw_minimap_pixels(t_game *game);
+void draw_player_minimap(t_game *game);
+
 
 #endif

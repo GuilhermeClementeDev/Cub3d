@@ -34,7 +34,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 # Trocar "tput clear || true" por clear
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME) -lm
 	@tput clear || true
 	@echo "✅ ${NAME} is compiled."
 
