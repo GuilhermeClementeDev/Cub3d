@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 18:53:20 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:39:22 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,14 @@ void	draw_player_minimap(t_game *game)
 
 void	ft_draw_minimap(t_game *game)
 {
+	if (!game->minimap.img)
+	{
+		game->minimap.img = mlx_new_image(game->mlx, \
+MINIMAP_SIZE, MINIMAP_SIZE);
+		game->minimap.path = mlx_get_data_addr(game->minimap.img, \
+&game->minimap.width, &game->minimap.line_len, &game->minimap.height);
+	}
 	draw_minimap_pixels(game);
 	draw_player_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 10, 10);
 }

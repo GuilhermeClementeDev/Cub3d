@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:34:16 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 19:07:31 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:29:15 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,14 @@ static void draw_column(t_game *game, int x)
         my_mlx_pixel_put(&game->background, x, y, game->map_game.floor_color);
 }
 
-
 void raycasting_loop(t_game *game)
 {
-	int x;
-	for (x = 0; x < game->screen_width; x++)
-		draw_column(game, x);
+	int	i;
+
+	i = 0;
+	while (i < game->screen_width)
+	{
+		draw_column(game, i);
+		i++;
+	}
 }
