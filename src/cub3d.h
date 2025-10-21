@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 18:31:02 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 19:17:12 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,9 @@ int key_press(int key, t_game *game);
 int update(void *param);
 void draw_minimap_pixels(t_game *game);
 void draw_player_minimap(t_game *game);
-
+void raycasting_loop(t_game *game);
+void ft_init_sprites(t_game *game);
+void my_mlx_pixel_put(t_sprite *sprite, int x, int y, int color);
+void ft_render_background(t_game *game);
 
 #endif

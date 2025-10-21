@@ -27,6 +27,9 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/rgb.c \
 	$(SRC_DIR)/$(PARSE_DIR)/flood_fill.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_window.c \
+	$(SRC_DIR)/$(WIN_DIR)/ft_raycasting.c \
+	$(SRC_DIR)/$(WIN_DIR)/mlx_utils.c \
+	$(SRC_DIR)/$(WIN_DIR)/player_and_events.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_mini_map.c \
 
 OBJS = $(SRCS:.c=.o)

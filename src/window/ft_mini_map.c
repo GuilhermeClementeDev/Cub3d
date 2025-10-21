@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 18:49:54 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:53:20 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw_player_minimap(t_game *game)
 
 void	ft_draw_minimap(t_game *game)
 {
-	draw_minimap_pixels(game); // opcional: se quiser o mapa estático só uma vez, retire esta linha
-    draw_player_minimap(game);
-    mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 0, 0);
+	draw_minimap_pixels(game);
+	draw_player_minimap(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 0, 0);
 }
