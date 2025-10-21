@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 10:04:13 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/20 14:08:48 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:40:07 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,47 @@ game->map_game.tex_ea.path, &game->map_game.tex_ea.width, \
 		ft_free_sprites(5, game);
 }
 
-static void	ft_create_background(t_game *game)
+static void	ft_draw_column_background(t_game *game, int x)
 {
 	int				y;
-	int				x;
 	unsigned int	*line;
+	double			cameraX;
+	double			rayDirX;
+	double			rayDirY;
 
-	game->background.img = mlx_new_image(game->mlx, \
-game->screen_width, game->screen_height);
-	game->background.path = mlx_get_data_addr(game->background.img, \
-&game->background.width, &game->background.line_len, \
-&game->background.height);
+	cameraX = 2 * x / (double)game->screen_width - 1;
+	rayDirX = game->map_game.player.dirX + game->map_game.player.planeX * cameraX;
+	rayDirY = game->map_game.player.dirY + game->map_game.player.planeY * cameraX;
 	y = 0;
 	while (y < game->screen_height)
 	{
-		line = (unsigned int *)(game->background.path + y * \
-game->background.line_len);
-		x = 0;
-		while (x < game->screen_width)
-		{
-			if (y < game->screen_height / 2)
-				line[x] = game->map_game.ceiling_color;
-			else
-				line[x] = game->map_game.floor_color;
-			x++;
-		}
+		line = (unsigned int *)(game->background.path + y * game->background.line_len);
+		if (y < game->screen_height / 2)
+			line[x] = game->map_game.ceiling_color;
+		else
+			line[x] = game->map_game.floor_color;
 		y++;
+	}
+	(void)rayDirX;
+	(void)rayDirY;
+}
+
+
+static void	ft_create_background(t_game *game)
+{
+	int x;
+
+	game->background.img = mlx_new_image(game->mlx,
+		game->screen_width, game->screen_height);
+	game->background.path = mlx_get_data_addr(game->background.img,
+		&game->background.width, &game->background.line_len,
+		&game->background.height);
+
+	x = 0;
+	while (x < game->screen_width)
+	{
+		ft_draw_column_background(game, x);
+		x++;
 	}
 }
 

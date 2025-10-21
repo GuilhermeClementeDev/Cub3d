@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 10:49:20 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:09:05 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,34 @@ static void	ft_player(int player_x, int player_y, t_game *game)
 	game->map_game.player.height = player_y;
 	game->map_game.player.width = player_x;
 	game->map_game.player.player_dir = game->map_game.map[player_y][player_x];
+	if (game->map_game.player.player_dir == 'N')
+	{
+		game->map_game.player.dirX = 0;
+		game->map_game.player.dirY = -1;
+		game->map_game.player.planeX = 0.66;
+		game->map_game.player.planeY = 0;
+	}
+	else if (game->map_game.player.player_dir == 'S')
+	{
+		game->map_game.player.dirX = 0;
+		game->map_game.player.dirY = 1;
+		game->map_game.player.planeX = -0.66;
+		game->map_game.player.planeY = 0;
+	}
+	else if (game->map_game.player.player_dir == 'E')
+	{
+		game->map_game.player.dirX = 1;
+		game->map_game.player.dirY = 0;
+		game->map_game.player.planeX = 0;
+		game->map_game.player.planeY = 0.66;
+	}
+	else if (game->map_game.player.player_dir == 'W')
+	{
+		game->map_game.player.dirX = -1;
+		game->map_game.player.dirY = 0;
+		game->map_game.player.planeX = 0;
+		game->map_game.player.planeY = -0.66;
+	}
 }
 
 static void	ft_check_chars(char **map, int height, t_game *game)

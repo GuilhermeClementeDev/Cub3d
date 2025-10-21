@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/30 17:27:54 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:51:39 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 # define MINIMAP_SIZE 250
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.03
 # define RED 0xFF0000
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -25,10 +27,14 @@
 
 typedef struct s_position
 {
-	int				width;
-	int				height;
+	double			width;
+	double			height;
 	int				count;
 	char			player_dir;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
 }					t_player;
 
 typedef struct s_sprite
