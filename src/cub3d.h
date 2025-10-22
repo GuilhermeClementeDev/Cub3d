@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/30 17:27:54 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 17:39:12 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,39 @@
 # define WHITE 0xFFFFFF
 # define GREY 0x373737
 
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+
 # include "../libs/libft/libft.h"
 # include "../libs/mlx/mlx.h"
 # include <fcntl.h>
 
-typedef struct s_position
+typedef struct s_keys
 {
-	int				width;
-	int				height;
+	int w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+}	t_keys;
+
+typedef struct s_player
+{
+	double			posX;
+	double			posY;
 	int				count;
 	char			player_dir;
-}					t_player;
+	double			dirX;
+	double			dirY;
+	double			planeX;
+	double			planeY;
+}	t_player;
 
 typedef struct s_sprite
 {
@@ -64,7 +86,7 @@ typedef struct s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}					t_color;
+}	t_color;
 
 typedef struct s_game
 {
@@ -75,8 +97,35 @@ typedef struct s_game
 	int			screen_height;
 	t_sprite	background;
 	t_sprite	minimap;
-
+	t_keys		keys;
 }	t_game;
+
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_lenght;
+	int		endian;
+}				t_img;
+
+typedef struct	s_data
+{
+	void		*mlx;
+	void		*win;
+	int			win_width;
+	int			win_height;
+	t_player	player;
+	t_keys		keys;
+	t_img		screen_img;
+	char		**map;
+	int			map_width;
+	int			map_height;
+	t_img		texture[4];
+	char		*tex_paths;
+	int			floor_color;
+	int			ceil_color;
+}				t_data;
 
 //PARSING
 //parsing.c
@@ -115,5 +164,11 @@ void			ft_free_call(char **to_be_free, char *msg, t_game *game);
 //ft_error2.c
 void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
+
+//MOVEMENT
+//movement.c
+int	key_press(int keycode, t_data *data);
+int	key_release(int keycode, t_data *data);
+int	exit_game(t_data *data);
 
 #endif
