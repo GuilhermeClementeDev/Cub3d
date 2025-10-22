@@ -6,11 +6,19 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 23:59:56 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:07:55 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	init_mlx_hooks(t_data *data)
+{
+	mlx_hook(data->win, 2, 1L<<0, key_press, data);
+	mlx_hook(data->win, 2, 1L<<0, key_release, data);
+	mlx_hook(data->win, 2, 1L<<0, exit_game, data);
+	mlx_loop_hook(data->mlx, main_loop, data);
+}
 
 static void	ft_build_game(t_game *game)
 {
@@ -40,8 +48,8 @@ void	ft_print_game(t_game *game)
 	ft_printf("Map:\n");
 	while (i < game->map_game.height)
 		ft_printf("%s\n", game->map_game.map[i++]);
-	ft_printf("Player x: %d\n", game->map_game.player.width);
-	ft_printf("Player y: %d\n", game->map_game.player.height);
+	ft_printf("Player x: %d\n", game->map_game.player.posX);
+	ft_printf("Player y: %d\n", game->map_game.player.posY);
 	ft_printf("Player y: %c\n", game->map_game.player.player_dir);
 }
 
