@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/19 10:49:20 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/23 21:19:42 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_verify_all_config(char **lines, t_game *game)
 static void	ft_player(int player_x, int player_y, t_game *game)
 {
 	game->map_game.player.count++;
-	game->map_game.player.height = player_y;
-	game->map_game.player.width = player_x;
+	game->map_game.player.posY = player_y;
+	game->map_game.player.posX = player_x;
 	game->map_game.player.player_dir = game->map_game.map[player_y][player_x];
 }
 
