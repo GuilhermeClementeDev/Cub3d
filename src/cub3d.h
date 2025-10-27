@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 19:17:12 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:02:09 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 
 typedef struct s_keys
 {
-	int w;
-	int a;
-	int s;
-	int d;
-	int left;
-	int right;
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
 }	t_keys;
 
 typedef struct s_player
@@ -42,10 +42,10 @@ typedef struct s_player
 	double			height;
 	int				count;
 	char			player_dir;
-	double			dirX;
-	double			dirY;
-	double			planeX;
-	double			planeY;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }	t_player;
 
 typedef struct s_sprite
@@ -83,6 +83,27 @@ typedef struct s_color
 	unsigned char	b;
 }	t_color;
 
+typedef struct s_raycast
+{
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			camera_x;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				side;
+	char			hit_char;
+	int				draw_start;
+	int				draw_end;
+	int				wall_height;
+}	t_raycast;
+
 typedef struct s_game
 {
 	t_map		map_game;
@@ -93,8 +114,8 @@ typedef struct s_game
 	t_sprite	background;
 	t_sprite	minimap;
 	t_keys		keys;
+	t_raycast	ray;
 }	t_game;
-
 
 //PARSING
 //parsing.c
@@ -124,6 +145,12 @@ void			ft_open_mlx(t_game *game);
 int				ft_x(t_game *game);
 //ft_mini_map.c
 void			ft_draw_minimap(t_game *game);
+//ft_raycasting.c
+void			ft_raycasting(t_game *game);
+//mlx_utils.c
+void			init_raycast(t_game *g, int x);
+void			ft_init_sprites(t_game *game);
+void			my_mlx_pixel_put(t_sprite *sprite, int x, int y, int color);
 
 //ERROR
 //ft_error.c
@@ -134,14 +161,7 @@ void			ft_free_call(char **to_be_free, char *msg, t_game *game);
 void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
 
-int key_release(int key, t_game *game);
-int key_press(int key, t_game *game);
-int update(void *param);
-void draw_minimap_pixels(t_game *game);
-void draw_player_minimap(t_game *game);
-void raycasting_loop(t_game *game);
-void ft_init_sprites(t_game *game);
-void my_mlx_pixel_put(t_sprite *sprite, int x, int y, int color);
-void ft_render_background(t_game *game);
+//player_moves
+int				key_press(int key, t_game *game);
 
 #endif

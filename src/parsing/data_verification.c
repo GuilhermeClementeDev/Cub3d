@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/20 15:09:05 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:57:21 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,31 @@ void	ft_verify_all_config(char **lines, t_game *game)
 	validate_xpm_file(lines, game->map_game.tex_ea.path, game);
 }
 
+static void	set_dir(t_player *p, int position)
+{
+	if (position == 1)
+	{
+		p->dir_x = 0;
+		p->dir_y = -1;
+		p->plane_x = 0.66;
+		p->plane_y = 0;
+	}
+	else if (position == 2)
+	{
+		p->dir_x = 0;
+		p->dir_y = 1;
+		p->plane_x = -0.66;
+		p->plane_y = 0;
+	}
+	else if (position == 3)
+	{
+		p->dir_x = 1;
+		p->dir_y = 0;
+		p->plane_x = 0;
+		p->plane_y = 0.66;
+	}
+}
+
 static void	ft_player(int player_x, int player_y, t_game *game)
 {
 	game->map_game.player.count++;
@@ -36,32 +61,17 @@ static void	ft_player(int player_x, int player_y, t_game *game)
 	game->map_game.player.width = player_x;
 	game->map_game.player.player_dir = game->map_game.map[player_y][player_x];
 	if (game->map_game.player.player_dir == 'N')
-	{
-		game->map_game.player.dirX = 0;
-		game->map_game.player.dirY = -1;
-		game->map_game.player.planeX = 0.66;
-		game->map_game.player.planeY = 0;
-	}
+		set_dir(&game->map_game.player, 1);
 	else if (game->map_game.player.player_dir == 'S')
-	{
-		game->map_game.player.dirX = 0;
-		game->map_game.player.dirY = 1;
-		game->map_game.player.planeX = -0.66;
-		game->map_game.player.planeY = 0;
-	}
+		set_dir(&game->map_game.player, 2);
 	else if (game->map_game.player.player_dir == 'E')
-	{
-		game->map_game.player.dirX = 1;
-		game->map_game.player.dirY = 0;
-		game->map_game.player.planeX = 0;
-		game->map_game.player.planeY = 0.66;
-	}
+		set_dir(&game->map_game.player, 3);
 	else if (game->map_game.player.player_dir == 'W')
 	{
-		game->map_game.player.dirX = -1;
-		game->map_game.player.dirY = 0;
-		game->map_game.player.planeX = 0;
-		game->map_game.player.planeY = -0.66;
+		game->map_game.player.dir_x = -1;
+		game->map_game.player.dir_y = 0;
+		game->map_game.player.plane_x = 0;
+		game->map_game.player.plane_y = -0.66;
 	}
 }
 
