@@ -1,51 +1,68 @@
 #include "../cub3d.h"
+#include <math.h>
 
-int	exit_game(t_data *data)
+static void	rotate_player(t_player *player, double rot_speed)
 {
-	mlx_destroy_image(data->mlx, data->screen_img.img);
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
+	double	old_dir_x;
+	double	old_plane_x;
 
-	// free other alocated memory
-	// free(map)
-	// ...
+	old_dir_x = player->dirX;
+	player->dirX = player->dirX * cos(rot_speed) - player->dirY * sin(rot_speed);
+	player->dirY = old_dir_x * sin(rot_speed) + player->dirY * cos(rot_speed);
 
-	exit(0);
-	return (0);
+	old_plane_x = player->planeX;
+	player->planeX = player->planeX * cos(rot_speed) - player->planeY * sin(rot_speed);
+	player->planeX = old_plane_x * sin(rot_speed) + player->planeY * cos(rot_speed);
 }
 
-int	key_press(int keycode, t_data *data)
+static void	apply_movement(t_game *game, double move_x, double move_y)
 {
-	if (keycode == KEY_ESC)
-		return (exit_game(data), 0);
-	else if (keycode == KEY_W)
-		data->keys.w = 1;
-	else if (keycode == KEY_A)
-		data->keys.a = 1;
-	else if (keycode == KEY_S)
-		data->keys.s = 1;
-	else if (keycode == KEY_D)
-		data->keys.d = 1;
-	else if (keycode == KEY_LEFT)
-		data->keys.left = 1;
-	else if (keycode == KEY_RIGHT)
-		data->keys.right = 1;
-	return (0);
+	t_player	*p;
+	double		new_pos_x;
+	double		new_pos_y;
+
+	p = &game->map_game.player;
+	new_pos_x = p->posX + move_x;
+	new_pos_y = p->posY + move_y;
+	
+	if (game->map_game.map[(int)p->posY][(int)new_pos_x] != '1')
+		p->posX = new_pos_x;
+	if (game->map_game.map[(int)p->posY][(int)p->posX] != '1')
+		p->posY = new_pos_y;
 }
 
-int	key_release(int keycode, t_data *data)
+void	handle_player_movement(t_game *game)
 {
-	if (keycode == KEY_W)
-		data->keys.w = 0;
-	else if (keycode == KEY_A)
-		data->keys.a = 0;
-	else if (keycode == KEY_S)
-		data->keys.s = 0;
-	else if (keycode == KEY_D)
-		data->keys.d = 0;
-	else if (keycode == KEY_LEFT)
-		data->keys.left = 0;
-	else if (keycode == KEY_RIGHT)
-		data->keys.right = 0;
-	return (0);
+	t_player	*p;
+	double		move_speed;
+	double		rot_speed;
+	double		move_x;
+	double		move_y;
+
+	if (game->keys.w)
+	{
+		move_x += p->dirX * move_speed;
+		move_y += p->dirY * move_speed;
+	}
+	if (game->keys.s)
+	{
+		move_x -= p->dirX * move_speed;
+		move_y -= p->dirY * move_speed;
+	}
+	if (game->keys.d)
+	{
+		move_x += p->planeX * move_speed;
+		move_y += p->planeY * move_speed;
+	}
+	if (game->keys.a)
+	{
+		move_x -= p->planeX * move_speed;
+		move_y -= p->planeY * move_speed;
+	}
+	if (move_x != 0 || move_y != 0)
+		apply_movement(game, move_x, move_y);
+	if (game->keys.right)
+		rotate_player(p, -rot_speed);
+	if (game->keys.left)
+		rotate_player(p, rot_speed);
 }
