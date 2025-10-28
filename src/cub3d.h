@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/23 20:59:48 by ytower           ###   ########.fr       */
+/*   Updated: 2025/10/27 21:55:08 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,6 @@ typedef struct s_color
 	unsigned char	b;
 }	t_color;
 
-typedef struct s_game
-{
-	t_map		map_game;
-	void		*mlx;
-	void		*win;
-	int			screen_width;
-	int			screen_height;
-	t_sprite	background;
-	t_sprite	minimap;
-	t_keys		keys;
-}	t_game;
-
 typedef struct	s_img
 {
 	void	*img;
@@ -116,23 +104,18 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_data
+typedef struct s_game
 {
+	t_map		map_game;
 	void		*mlx;
 	void		*win;
-	int			win_width;
-	int			win_height;
-	t_player	player;
-	t_keys		keys;
+	int			screen_width;
+	int			screen_height;
 	t_img		screen_img;
-	char		**map;
-	int			map_width;
-	int			map_height;
-	t_img		texture[4];
-	char		*tex_paths;
-	int			floor_color;
-	int			ceil_color;
-}				t_data;
+	t_sprite	background;
+	t_sprite	minimap;
+	t_keys		keys;
+}	t_game;
 
 //PARSING
 //parsing.c
@@ -173,10 +156,8 @@ void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
 //MOVEMENT
 //movement.c
-int	key_press(int keycode, t_data *data);
-int	key_release(int keycode, t_data *data);
-int	exit_game(t_data *data);
-
-
+int	key_press(int keycode, t_game *game);
+int	key_release(int keycode, t_game *game);
+int	exit_game(t_game *game);
 
 #endif
