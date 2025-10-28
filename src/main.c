@@ -6,19 +6,20 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 21:07:55 by ytower           ###   ########.fr       */
+/*   Updated: 2025/10/23 21:11:02 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	init_mlx_hooks(t_data *data)
+/*static void	init_mlx_hooks(t_data *data)
 {
-	mlx_hook(data->win, 2, 1L<<0, key_press, data);
-	mlx_hook(data->win, 2, 1L<<0, key_release, data);
-	mlx_hook(data->win, 2, 1L<<0, exit_game, data);
-	mlx_loop_hook(data->mlx, main_loop, data);
+	mlx_hook(data->win, PRESS, PRESS_M, key_press, data);
+	mlx_hook(data->win, RELEASE, RELEASE_M, key_release, data);
+	mlx_hook(data->win, CLOSE, 0, exit_game, data);
+//	mlx_loop_hook(data->mlx, main_loop, data);
 }
+*/
 
 static void	ft_build_game(t_game *game)
 {
