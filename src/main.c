@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/27 13:18:28 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:32:12 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_build_game(t_game *game)
 	game->map_game.tex_ea.path = NULL;
 	game->map_game.height = 0;
 	game->map_game.malloc = 0;
+	game->free_path = 0;
 }
 
 void	ft_print_game(t_game *game)
