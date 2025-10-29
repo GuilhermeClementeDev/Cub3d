@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:01:31 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/28 11:35:49 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:18:26 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ game->map_game.tex_we.path, &game->map_game.tex_we.width, \
 	game->map_game.tex_ea.img = mlx_xpm_file_to_image(game->mlx, \
 game->map_game.tex_ea.path, &game->map_game.tex_ea.width, \
 &game->map_game.tex_ea.height);
+	free(game->map_game.tex_no.path);
+	free(game->map_game.tex_so.path);
+	free(game->map_game.tex_we.path);
+	free(game->map_game.tex_ea.path);
+	game->free_path = 0;
 	game->background.img = NULL;
 	game->background.path = NULL;
 	game->minimap.img = NULL;
@@ -47,11 +52,18 @@ void	init_raycast(t_game *g, int x)
 {
 	g->ray.camera_x = 2 * x / (double)g->screen_width - 1;
 	g->ray.ray_dir_x = g->map_game.player.dir_x + \
-	g->map_game.player.plane_x * g->ray.camera_x;
+g->map_game.player.plane_x * g->ray.camera_x;
 	g->ray.ray_dir_y = g->map_game.player.dir_y + \
-	g->map_game.player.plane_y * g->ray.camera_x;
+g->map_game.player.plane_y * g->ray.camera_x;
 	g->ray.map_x = (int)g->map_game.player.width;
 	g->ray.map_y = (int)g->map_game.player.height;
 	g->ray.delta_dist_x = fabs(1 / g->ray.ray_dir_x);
 	g->ray.delta_dist_y = fabs(1 / g->ray.ray_dir_y);
+}
+
+int	ft_x(t_game *game)
+{
+	ft_free_sprites(0, game);
+	exit(0);
+	return (0);
 }

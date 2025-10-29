@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:22:26 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/29 10:24:08 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:17:05 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	ft_render_loop(t_game *game)
 {
 	ft_raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win, \
-	game->background.img, 0, 0);
+game->background.img, 0, 0);
 	return (0);
 }
 

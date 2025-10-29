@@ -6,13 +6,11 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:10:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/29 10:21:34 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:14:24 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-#define MOVE_STEP 0.1
-#define ROT_ANGLE 0.05
 
 static int can_move(t_game *game, double x, double y)
 {
@@ -76,12 +74,5 @@ int key_press(int key, t_game *game)
 		rotate_pov(game, key);
 	else if (key == 65307)
 		ft_x(game);
-	return 0;
-}
-
-int ft_x(t_game *game)
-{
-	ft_free_sprites(0, game);
-	exit(0);
 	return 0;
 }

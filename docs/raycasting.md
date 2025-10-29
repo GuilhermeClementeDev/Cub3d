@@ -1,220 +1,260 @@
-🧠 Raycasting — Documentação Completa
-📘 O que é Raycasting?
+## **1. `set_draw_points`**
 
-Raycasting é uma técnica de renderização usada para gerar uma projeção 3D a partir de um mapa 2D.
-Ela foi amplamente usada em jogos clássicos como Wolfenstein 3D, Doom (parcialmente) e é o método principal de renderização do projeto Cub3D da 42.
+```c
+static void	set_draw_points(t_game *g)
+{
+	if (g->ray.side == 0)
+		g->ray.perp_wall_dist = g->ray.side_dist_x - g->ray.delta_dist_x;
+	else
+		g->ray.perp_wall_dist = g->ray.side_dist_y - g->ray.delta_dist_y;
 
-A ideia é simples:
+	g->ray.wall_height = (int)(g->screen_height / g->ray.perp_wall_dist);
 
-Para cada coluna da tela, é lançado um “raio” (ray) a partir da posição do jogador, seguindo a direção que ele está olhando.
-O algoritmo calcula onde esse raio colide com uma parede no mapa 2D e, a partir disso, desenha uma linha vertical (coluna) na tela, proporcional à distância até a parede.
+	g->ray.draw_start = (-g->ray.wall_height / 2) + (g->screen_height / 2);
+	if (g->ray.draw_start < 0)
+		g->ray.draw_start = 0;
 
-Isso cria a ilusão de profundidade 3D, mesmo com o mapa sendo completamente bidimensional.
+	g->ray.draw_end = (g->ray.wall_height / 2) + (g->screen_height / 2);
+	if (g->ray.draw_end >= g->screen_height)
+		g->ray.draw_end = g->screen_height - 1;
+}
 
-🎯 Objetivo do Raycasting
+```
 
-O objetivo principal é:
+**Explicação detalhada:**
 
-Calcular qual parede está à frente do jogador em cada direção (coluna de pixels);
+1. **`g->ray.perp_wall_dist`**
+    - Calcula a distância perpendicular da câmera até a parede.
+    - `side == 0` → parede vertical (eixo X), então usamos `side_dist_x - delta_dist_x`.
+    - `side == 1` → parede horizontal (eixo Y), então usamos `side_dist_y - delta_dist_y`.
+    - **Matemática**: `perp_wall_dist = distância do raio até a parede no grid`.
+2. **`g->ray.wall_height`**
+    - Altura da parede projetada na tela: inversamente proporcional à distância.
+    - Fórmula: `wall_height = screen_height / perp_wall_dist`.
+        - Quanto mais longe a parede (`perp_wall_dist` grande), menor a parede na tela.
+        - Quanto mais perto (`perp_wall_dist` pequeno), maior a parede.
+3. **`g->ray.draw_start` e `g->ray.draw_end`**
+    - Determina os pixels verticalmente onde a parede será desenhada:
+        - Centro da tela: `screen_height / 2`.
+        - Começo da parede: `draw_start = -wall_height/2 + screen_height/2`.
+        - Fim da parede: `draw_end = wall_height/2 + screen_height/2`.
+    - Ajustes garantem que os valores não saiam da tela (0 a `screen_height-1`).
 
-Descobrir a distância até ela;
+---
 
-Determinar o tamanho da parede na tela (quanto mais longe, menor ela parece);
+## **2. `wall_check`**
 
-E finalmente, desenhar essa parede na tela, aplicando cores ou texturas.
+```c
+static void	wall_check(t_game *g)
+{
+	int	hit = 0;
 
-⚙️ Como funciona matematicamente
+	while (!hit)
+	{
+		if (g->ray.side_dist_x < g->ray.side_dist_y)
+		{
+			g->ray.side_dist_x += g->ray.delta_dist_x;
+			g->ray.map_x += g->ray.step_x;
+			g->ray.side = 0;
+		}
+		else
+		{
+			g->ray.side_dist_y += g->ray.delta_dist_y;
+			g->ray.map_y += g->ray.step_y;
+			g->ray.side = 1;
+		}
 
-O jogador é um ponto (posX, posY) no mapa 2D.
-Ele tem uma direção de visão (dirX, dirY) e um plano de câmera (planeX, planeY) — este plano define o campo de visão (FOV).
+		if (g->map_game.map[g->ray.map_y][g->ray.map_x] == '1')
+			hit = 1;
+	}
+}
 
-Para cada coluna de pixel x da tela, é calculada uma direção de raio (ray_dir_x, ray_dir_y).
+```
 
-O algoritmo DDA (Digital Differential Analyzer) é usado para andar no mapa passo a passo até encontrar uma célula que contenha uma parede ('1').
+**Explicação detalhada:**
 
-Ao encontrar a colisão, calcula-se:
+- Implementa o **algoritmo DDA (Digital Differential Analyzer)** para caminhar no grid do mapa até encontrar uma parede.
+- **Como funciona**:
+    1. Compara `side_dist_x` e `side_dist_y` → decide se o próximo passo é no eixo X ou Y.
+    2. Atualiza `map_x` ou `map_y` e soma `delta_dist` correspondente.
+    3. Marca `side = 0` ou `1` para indicar se bateu numa parede vertical ou horizontal.
+    4. Se a célula do mapa é `'1'` → parede encontrada, termina o loop.
+- **Matemática**:
+    - `side_dist_x += delta_dist_x` → distância percorrida pelo raio até próximo grid no X.
+    - `side_dist_y += delta_dist_y` → idem para Y.
 
-Distância perpendicular até a parede (para evitar distorção visual);
+---
 
-Altura da parede na tela;
+## **3. `calculate_step_and_distance`**
 
-Posição inicial e final da parede (para desenhar).
+```c
+static void	calculate_step_and_distance(t_game *g)
+{
+	if (g->ray.ray_dir_x < 0)
+	{
+		g->ray.step_x = -1;
+		g->ray.side_dist_x = (g->map_game.player.width - g->ray.map_x) * g->ray.delta_dist_x;
+	}
+	else
+	{
+		g->ray.step_x = 1;
+		g->ray.side_dist_x = (g->ray.map_x + 1.0 - g->map_game.player.width) * g->ray.delta_dist_x;
+	}
 
-Por fim, a parede, o teto e o chão são desenhados na respectiva coluna.
+	if (g->ray.ray_dir_y < 0)
+	{
+		g->ray.step_y = -1;
+		g->ray.side_dist_y = (g->map_game.player.height - g->ray.map_y) * g->ray.delta_dist_y;
+	}
+	else
+	{
+		g->ray.step_y = 1;
+		g->ray.side_dist_y = (g->ray.map_y + 1.0 - g->map_game.player.height) * g->ray.delta_dist_y;
+	}
+}
 
-🧩 Estrutura do seu código
+```
 
-O seu ft_raycasting.c implementa esse processo passo a passo.
-Vamos detalhar cada função:
+**Explicação detalhada:**
 
-### ft_raycasting(t_game *game)
+- Define a direção do passo no grid (`step_x`, `step_y` = -1 ou 1) dependendo da direção do raio.
+- Calcula a distância inicial do raio até o primeiro grid a ser atingido:
+    - `side_dist_x` = distância do jogador até a próxima linha vertical.
+    - `side_dist_y` = distância do jogador até a próxima linha horizontal.
+- **Matemática**:
+    - `(map_x + 1 - player.width) * delta_dist_x` → projeta a distância até o próximo lado da célula.
+    - `delta_dist_x` e `delta_dist_y` → distância que o raio percorre para atravessar uma célula no grid.
+
+---
+
+## **4. `calculate_wall_x`**
+
+```c
+static void calculate_wall_x(t_game *g)
+{
+	if (g->ray.side == 0)
+		g->ray.wall_x = g->map_game.player.height + g->ray.perp_wall_dist * g->ray.ray_dir_y;
+	else
+		g->ray.wall_x = g->map_game.player.width + g->ray.perp_wall_dist * g->ray.ray_dir_x;
+
+	g->ray.wall_x -= floor(g->ray.wall_x);
+}
+
+```
+
+- Calcula a posição exata do ponto de impacto da parede **em coordenadas do mundo**.
+- `wall_x` será usado para mapear a textura corretamente.
+- `wall_x -= floor(wall_x)` → transforma em **coordenada relativa na parede (0 a 1)**.
+
+---
+
+## **5. `get_wall_texture`**
+
+```c
+static t_sprite	*get_wall_texture(t_game *g)
+{
+	if (g->ray.side == 0)
+	{
+		if (g->ray.ray_dir_x > 0)
+			return (&g->map_game.tex_we);
+		else
+			return (&g->map_game.tex_ea);
+	}
+	else
+	{
+		if (g->ray.ray_dir_y > 0)
+			return (&g->map_game.tex_no);
+		else
+			return (&g->map_game.tex_so);
+	}
+}
+
+```
+
+- Escolhe a textura da parede com base na **orientação da parede e direção do raio**:
+    - `side == 0` → parede vertical → leste ou oeste.
+    - `side == 1` → parede horizontal → norte ou sul.
+
+---
+
+## **6. `calc_tex_x`**
+
+```c
+static int	calc_tex_x(t_game *g, t_sprite *tex)
+{
+	int tex_x;
+
+	tex_x = (int)(g->ray.wall_x * (double)tex->width);
+	if ((g->ray.side == 0 && g->ray.ray_dir_x > 0)
+		|| (g->ray.side == 1 && g->ray.ray_dir_y < 0))
+		tex_x = tex->width - tex_x - 1;
+	return (tex_x);
+}
+
+```
+
+- Converte `wall_x` (0 a 1) para coordenada X da textura.
+- Ajuste necessário para inverter a textura dependendo da orientação do raio.
+
+---
+
+## **7. `draw_wall`**
+
+```c
+static void	draw_wall(t_game *g, int x, t_sprite *tex, int tex_x)
+{
+	double step = 1.0 * tex->height / g->ray.wall_height;
+	double tex_pos = (g->ray.draw_start - g->screen_height / 2 + g->ray.wall_height / 2) * step;
+
+	int y = g->ray.draw_start;
+	while (y < g->ray.draw_end)
+	{
+		int tex_y = (int)tex_pos;
+		color = *(unsigned int*)(tex->path + (tex_y * tex->line_len) + (tex_x * 4));
+		my_mlx_pixel_put(&g->background, x, y++, color);
+		tex_pos += step;
+	}
+}
+
+```
+
+- **`step`** → quantidade de pixels na textura para cada pixel vertical da parede.
+- **`tex_pos`** → posição inicial na textura considerando a posição de desenho na tela.
+- Loop percorre cada pixel da coluna da parede na tela e mapeia a cor correta da textura.
+
+---
+
+## **8. `draw_raycast_column`**
+
+- Desenha **uma coluna vertical da tela**:
+    1. Preenche o teto (`ceiling_color`) até `draw_start`.
+    2. Desenha a parede usando `draw_wall`.
+    3. Preenche o chão (`floor_color`) de `draw_end` até a base da tela.
+
+---
+
+## **9. `ft_raycasting`**
+
+```c
 void	ft_raycasting(t_game *game)
 {
-	int	x;
-
-	x = 0;
+	int x = 0;
 	while (x < game->screen_width)
 	{
-		init_raycast(game, x);
+		init_raycast(game, x);         // Inicializa raio para coluna x
 		calculate_step_and_distance(game);
-		wall_check(game);
-		set_draw_points(game);
-		draw_raycast_column(game, x);
+		wall_check(game);              // Detecta parede
+		set_draw_points(game);         // Define start/end de parede
+		calculate_wall_x(game);        // Calcula ponto de impacto exato
+		draw_raycast_column(game, x);  // Desenha coluna na tela
 		x++;
 	}
 }
 
-
-Responsabilidade:
-É a função principal que:
-
-percorre cada coluna da tela (x),
-
-calcula a direção do raio para aquela coluna (init_raycast),
-
-faz o DDA para encontrar onde ele colide com uma parede,
-
-calcula a distância até essa parede,
-
-e desenha a coluna correspondente na tela.
-
-Essa função é chamada uma vez por frame — ou seja, toda vez que o jogador se move ou gira, o mapa é re-renderizado.
-
-### calculate_step_and_distance(t_game *g)
-static void	calculate_step_and_distance(t_game *g)
-
-
-O que faz:
-Determina para qual direção o raio deve andar no mapa (E/O ou N/S) e calcula a distância inicial até a primeira linha de grade.
-
-Conceitos:
-
-Cada célula do mapa é um quadrado unitário (1x1).
-
-O jogador pode estar em qualquer posição dentro de uma célula (ex: posX = 3.42).
-
-Precisamos descobrir qual será o primeiro ponto de interseção do raio com as linhas de grade no eixo X e no eixo Y.
-
-Variáveis importantes:
-
-step_x / step_y: indica se o raio anda no mapa para frente (1) ou para trás (-1);
-
-side_dist_x / side_dist_y: distância do jogador até o primeiro lado de uma célula;
-
-delta_dist_x / delta_dist_y: distância entre duas interseções consecutivas de grade (usado no DDA).
-
-### wall_check(t_game *g)
-static void	wall_check(t_game *g)
-
-
-O que faz:
-Executa o algoritmo DDA para encontrar onde o raio colide com uma parede.
-
-Como funciona:
-
-Compara side_dist_x e side_dist_y;
-
-Avança o menor (isto é, anda para o lado da grade mais próximo);
-
-Atualiza map_x ou map_y (posição no mapa);
-
-Verifica se a célula atual contém uma parede ('1') ou uma porta ('D').
-
-Quando encontra algo sólido, o loop para — o raio “bateu”.
-
-Por que DDA?
-
-O Digital Differential Analyzer é um método rápido para percorrer grades uniformes (como um mapa 2D).
-Evita cálculos trigonométricos caros e permite caminhar célula por célula até a colisão.
-
-### set_perp_distance(t_game *g)
-static void	set_perp_distance(t_game *g)
-
-
-O que faz:
-Após encontrar a parede, calcula a distância perpendicular entre o jogador e a parede.
-
-Por que “perpendicular”?
-
-Se usássemos a distância real do raio, haveria efeito “fisheye” (paredes distorcidas nas bordas da tela).
-Então, o valor é corrigido de acordo com a direção do raio e o lado atingido.
-
-Essa distância é essencial para o cálculo da altura da parede na tela.
-
-### set_draw_points(t_game *g)
-static void	set_draw_points(t_game *g)
-
-
-O que faz:
-Com base na distância até a parede (perp_wall_dist), calcula:
-
-wall_height: altura projetada da parede na tela;
-
-draw_start e draw_end: linhas verticais que delimitam a parte da tela onde a parede será desenhada.
-
-Fórmula:
-wall_height = screen_height / perp_wall_dist
-
-
-Quanto menor a distância, maior a parede parece.
-
-### draw_raycast_column(t_game *g, int x)
-static void	draw_raycast_column(t_game *g, int x)
-
-
-O que faz:
-Desenha uma coluna vertical da tela:
-
-De 0 até draw_start → cor do teto;
-
-De draw_start até draw_end → parede (no seu caso, WHITE);
-
-De draw_end até screen_height → chão.
-
-No futuro, essa parte normalmente é substituída por amostragem de textura, onde cada pixel da parede é desenhado conforme a textura da parede atingida.
-
-🧮 Fluxo resumido do Raycasting
-        |--------- screen_width --------|
-Column: 0                                N
-
-For each column:
-    ↓
-1️⃣ Calcular direção do raio
-2️⃣ Descobrir distância até o primeiro lado (step e delta)
-3️⃣ Avançar no mapa até colidir (DDA)
-4️⃣ Calcular distância perpendicular
-5️⃣ Calcular tamanho e posição da parede na tela
-6️⃣ Desenhar teto / parede / chão
-
-🔍 Por que precisamos disso?
-
-Sem raycasting, você só teria um mapa 2D visto de cima.
-O raycasting permite converter essa informação em uma perspectiva 3D simulada — é o coração de todo o motor Cub3D.
-
-Ele permite:
-
-Visualização tridimensional de um mapa 2D;
-
-Detecção de colisão (paredes e portas);
-
-Aplicação de texturas e iluminação básica;
-
-E, eventualmente, renderização de sprites e objetos.
-
-📄 Conclusão
-
-O raycasting é a base matemática e lógica do Cub3D.
-Ele transforma coordenadas de mapa em projeções visuais realistas.
-Seu código implementa todas as etapas fundamentais:
-
-Direcionamento do raio,
-
-DDA para colisão,
-
-Cálculo de distância,
-
-Projeção da parede,
-
-Desenho da coluna.
-
-É uma técnica simples, rápida e eficiente — ideal para jogos 3D de primeira geração e perfeita para aprendizado de motores gráficos.
+```
+
+- Faz **raycasting para cada coluna da tela**, simulando visão 3D:
+    1. Cada `x` é uma coluna de pixels na tela.
+    2. Um raio é lançado e percorre o mapa até bater em uma parede.
+    3. Altura da parede é calculada e a textura é mapeada.
+    4. Repetido para todas as colunas → efeito 3D.

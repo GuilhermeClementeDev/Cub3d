@@ -1,10 +1,10 @@
-NO ./assets/textures/blue.xpm
+NO ./assets/textures/wall_1.xpm
 
-SO ./assets/textures/brown.xpm
+SO ./assets/textures/wall_2.xpm
 
-WE ./assets/textures/Red10.xpm
+WE ./assets/textures/wall_3.xpm
 
-EA ./assets/textures/Slime.xpm
+EA ./assets/textures/wall_4.xpm
 
 
 F 0,0,0
@@ -22,6 +22,6 @@ C 128,128,128
 11000000110101011100000010001
 10000000000000001100000010001
 10000000000000001101010000001
-11000001110101011111011110N0111
+11000001110101011111011110S0111
 11110111 1110101 101111010001
 11111111 1111111 111111111111

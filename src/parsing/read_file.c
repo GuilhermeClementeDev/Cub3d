@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 11:43:00 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 23:56:30 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:46:52 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int	ft_is_config(char *line)
 
 static void	ft_config_line(char **config, int i, t_game *game)
 {
+	game->free_path = 1;
 	if (config[i][0] == 'N' && !game->map_game.tex_no.path)
 		game->map_game.tex_no.path = ft_strdup(&config[i][3]);
 	else if (config[i][0] == 'E' && !game->map_game.tex_ea.path)

@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/27 18:02:09 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:45:16 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define MINIMAP_SIZE 250
-# define MOVE_SPEED 0.15
-# define ROT_SPEED 25
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.05
 # define RED 0xFF0000
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -102,6 +102,7 @@ typedef struct s_raycast
 	int				draw_start;
 	int				draw_end;
 	int				wall_height;
+	double			wall_x;
 }	t_raycast;
 
 typedef struct s_game
@@ -111,6 +112,7 @@ typedef struct s_game
 	void		*win;
 	int			screen_width;
 	int			screen_height;
+	int			free_path;
 	t_sprite	background;
 	t_sprite	minimap;
 	t_keys		keys;

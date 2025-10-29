@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/21 19:39:22 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:17:30 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static unsigned int	get_map_color_at_pixel(t_game *game, int x, int y, int half)
 	if ((x - half) * (x - half) + (y - half) * (y - half) <= half * half)
 		return (get_map_pixel_color(game, map_x, map_y));
 	return (*(unsigned int *)(game->background.path + \
-	(y * game->background.line_len) + (x * (game->background.width / 8))));
+(y * game->background.line_len) + (x * (game->background.width / 8))));
 }
 
 void	draw_minimap_pixels(t_game *game)
