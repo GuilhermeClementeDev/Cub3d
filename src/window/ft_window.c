@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:22:26 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/27 16:09:37 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 10:24:08 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_render_loop(t_game *game)
 	ft_raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win, \
 	game->background.img, 0, 0);
-	return 0;
+	return (0);
 }
 
 void	ft_open_mlx(t_game *game)
@@ -35,7 +35,8 @@ game->screen_width, game->screen_height, "Cub3d");
 	if (!game->win)
 		ft_error_mlx("Error creating window.", 6, game);
 	ft_init_sprites(game);
-	game->background.img = mlx_new_image(game->mlx, game->screen_width, game->screen_height);
+	game->background.img = mlx_new_image(game->mlx, game->screen_width, \
+game->screen_height);
 	game->background.path = mlx_get_data_addr(game->background.img, \
 &game->background.width, &game->background.line_len, &game->background.height);
 	mlx_loop_hook(game->mlx, ft_render_loop, game);

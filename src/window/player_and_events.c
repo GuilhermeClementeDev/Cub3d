@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:10:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/27 18:00:36 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 10:21:34 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static int can_move(t_game *game, double x, double y)
 static void	move_front_back(t_game *game, int direction)
 {
     double move_vect = (direction == 119) ? 1.0 : -1.0; // w=119, s=115
-    double temp_x = game->map_game.player.width + move_vect * game->map_game.player.dir_x * MOVE_STEP;
+    double temp_x = game->map_game.player.width + move_vect * game->map_game.player.dir_x * MOVE_SPEED;
     double temp_y = game->map_game.player.height;
     if (can_move(game, temp_x, temp_y))
         game->map_game.player.width = temp_x;
     temp_x = game->map_game.player.width;
-    temp_y = game->map_game.player.height + move_vect * game->map_game.player.dir_y * MOVE_STEP;
+    temp_y = game->map_game.player.height + move_vect * game->map_game.player.dir_y * MOVE_SPEED;
     if (can_move(game, temp_x, temp_y))
         game->map_game.player.height = temp_y;
 }
@@ -44,19 +44,19 @@ static void	move_front_back(t_game *game, int direction)
 static void	move_sides(t_game *game, int direction)
 {
     double move_vect = (direction == 100) ? 1.0 : -1.0; // d=100, a=97
-    double temp_x = game->map_game.player.width + move_vect * game->map_game.player.plane_x * MOVE_STEP;
+    double temp_x = game->map_game.player.width + move_vect * game->map_game.player.plane_x * MOVE_SPEED;
     double temp_y = game->map_game.player.height;
     if (can_move(game, temp_x, temp_y))
         game->map_game.player.width = temp_x;
     temp_x = game->map_game.player.width;
-    temp_y = game->map_game.player.height + move_vect * game->map_game.player.plane_y * MOVE_STEP;
+    temp_y = game->map_game.player.height + move_vect * game->map_game.player.plane_y * MOVE_SPEED;
     if (can_move(game, temp_x, temp_y))
         game->map_game.player.height = temp_y;
 }
 
 static void	rotate_pov(t_game *game, int direction)
 {
-    double rotate_ang = (direction == 65361) ? -ROT_ANGLE : ROT_ANGLE; // left=65361, right=65363
+    double rotate_ang = (direction == 65361) ? -ROT_SPEED : ROT_SPEED; // left=65361, right=65363
     double old_dir_x = game->map_game.player.dir_x;
     double old_plane_x = game->map_game.player.plane_x;
 
