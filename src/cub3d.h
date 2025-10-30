@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/29 16:45:16 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:24:07 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,6 @@
 # include "../libs/mlx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
-
-typedef struct s_keys
-{
-	int	w;
-	int	a;
-	int	s;
-	int	d;
-	int	left;
-	int	right;
-}	t_keys;
 
 typedef struct s_player
 {
@@ -115,7 +105,6 @@ typedef struct s_game
 	int			free_path;
 	t_sprite	background;
 	t_sprite	minimap;
-	t_keys		keys;
 	t_raycast	ray;
 }	t_game;
 
@@ -145,14 +134,14 @@ unsigned int	create_trgb(char *str);
 //window.c
 void			ft_open_mlx(t_game *game);
 int				ft_x(t_game *game);
-//ft_mini_map.c
-void			ft_draw_minimap(t_game *game);
 //ft_raycasting.c
 void			ft_raycasting(t_game *game);
 //mlx_utils.c
 void			init_raycast(t_game *g, int x);
 void			ft_init_sprites(t_game *game);
 void			my_mlx_pixel_put(t_sprite *sprite, int x, int y, int color);
+//ft_draw.c
+void			draw_raycast_column(t_game *g, int x);
 
 //ERROR
 //ft_error.c
@@ -162,8 +151,5 @@ void			ft_free_call(char **to_be_free, char *msg, t_game *game);
 //ft_error2.c
 void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
-
-//player_moves
-int				key_press(int key, t_game *game);
 
 #endif

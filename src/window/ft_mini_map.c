@@ -6,12 +6,13 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/29 18:17:30 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:09:45 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/*
 static unsigned int	get_map_pixel_color(t_game *game, int x, int y)
 {
 	if (y < 0 || y >= game->map_game.height
@@ -94,3 +95,4 @@ MINIMAP_SIZE, MINIMAP_SIZE);
 	draw_player_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 10, 10);
 }
+*/

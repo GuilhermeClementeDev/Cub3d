@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:34:16 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/29 18:02:30 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:24:04 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,96 +78,16 @@ g->ray.map_y) * g->ray.delta_dist_y;
 g->map_game.player.height) * g->ray.delta_dist_y;
 	}
 }
-static void calculate_wall_x(t_game *g)
-{
-	if (g->ray.side == 0) // Parede vertical (Leste/Oeste), usa coord. Y
-		g->ray.wall_x = g->map_game.player.height + g->ray.perp_wall_dist * g->ray.ray_dir_y;
-	else // Parede horizontal (Norte/Sul), usa coord. X
-		g->ray.wall_x = g->map_game.player.width + g->ray.perp_wall_dist * g->ray.ray_dir_x;
-	g->ray.wall_x -= floor(g->ray.wall_x);
-}
 
-static t_sprite	*get_wall_texture(t_game *g)
+static void	calculate_wall_x(t_game *g)
 {
 	if (g->ray.side == 0)
-	{
-		if (g->ray.ray_dir_x > 0)
-			return (&g->map_game.tex_we);
-		else
-			return (&g->map_game.tex_ea);
-	}
+		g->ray.wall_x = \
+g->map_game.player.height + g->ray.perp_wall_dist * g->ray.ray_dir_y;
 	else
-	{
-		if (g->ray.ray_dir_y > 0)
-			return (&g->map_game.tex_no);
-		else
-			return (&g->map_game.tex_so);
-	}
-}
-static int	calc_tex_x(t_game *g, t_sprite *tex)
-{
-	int tex_x;
-
-	// converte wall_x (0 a 1) para coordenada X da textura
-	tex_x = (int)(g->ray.wall_x * (double)tex->width);
-	if ((g->ray.side == 0 && g->ray.ray_dir_x > 0)
-		|| (g->ray.side == 1 && g->ray.ray_dir_y < 0))
-		tex_x = tex->width - tex_x - 1;
-	return (tex_x);
-}
-
-static void	draw_wall(t_game *g, int x, t_sprite *tex, int tex_x)
-{
-	int			y;
-	unsigned int	color;
-	int			tex_y;
-	double		step;
-	double		tex_pos;
-
-	tex->path = mlx_get_data_addr(tex->img,
-		&tex->width, &tex->line_len, &tex_y);
-
-	// passo por pixel na tela para percorrer a textura inteira
-	step = 1.0 * tex->height / g->ray.wall_height;
-
-	// posição inicial na textura considerando draw_start
-	tex_pos = (g->ray.draw_start - g->screen_height / 2 + g->ray.wall_height / 2) * step;
-
-	y = g->ray.draw_start;
-	while (y < g->ray.draw_end)
-	{
-		tex_y = (int)tex_pos;
-		if (tex_y >= tex->height) tex_y = tex->height - 1;
-		color = *(unsigned int*)(tex->path + (tex_y * tex->line_len) + (tex_x * 4)); // 4 bytes por pixel
-		my_mlx_pixel_put(&g->background, x, y++, color);
-		tex_pos += step;
-	}
-}
-
-
-
-static void	draw_raycast_column(t_game *g, int x)
-{
-	int			y;
-	t_sprite	*tex;
-	int			tex_x;
-
-	y = 0;
-	while (y < g->ray.draw_start)
-	{
-		my_mlx_pixel_put(&g->background, x, y, g->map_game.ceiling_color);
-		y++;
-	}
-	y = g->ray.draw_start;
-	tex = get_wall_texture(g);
-	tex_x = calc_tex_x(g, tex);
-	draw_wall(g, x, tex, tex_x);
-	y = g->ray.draw_end;
-	while (y < g->screen_height)
-	{
-		my_mlx_pixel_put(&g->background, x, y, g->map_game.floor_color);
-		y++;
-	}
+		g->ray.wall_x = \
+g->map_game.player.width + g->ray.perp_wall_dist * g->ray.ray_dir_x;
+	g->ray.wall_x -= floor(g->ray.wall_x);
 }
 
 void	ft_raycasting(t_game *game)

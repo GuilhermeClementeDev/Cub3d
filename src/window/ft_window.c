@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 17:22:26 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/29 18:17:05 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:22:06 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ game->screen_height);
 	game->background.path = mlx_get_data_addr(game->background.img, \
 &game->background.width, &game->background.line_len, &game->background.height);
 	mlx_loop_hook(game->mlx, ft_render_loop, game);
-	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->win, 17, 0, ft_x, game);
 	mlx_loop(game->mlx);
 }
