@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/30 17:27:54 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:24:07 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 # define MINIMAP_SIZE 250
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.05
 # define RED 0xFF0000
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
@@ -22,14 +24,19 @@
 # include "../libs/libft/libft.h"
 # include "../libs/mlx/mlx.h"
 # include <fcntl.h>
+# include <math.h>
 
-typedef struct s_position
+typedef struct s_player
 {
-	int				width;
-	int				height;
+	double			width;
+	double			height;
 	int				count;
 	char			player_dir;
-}					t_player;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+}	t_player;
 
 typedef struct s_sprite
 {
@@ -64,7 +71,29 @@ typedef struct s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-}					t_color;
+}	t_color;
+
+typedef struct s_raycast
+{
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			camera_x;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				side;
+	char			hit_char;
+	int				draw_start;
+	int				draw_end;
+	int				wall_height;
+	double			wall_x;
+}	t_raycast;
 
 typedef struct s_game
 {
@@ -73,9 +102,10 @@ typedef struct s_game
 	void		*win;
 	int			screen_width;
 	int			screen_height;
+	int			free_path;
 	t_sprite	background;
 	t_sprite	minimap;
-
+	t_raycast	ray;
 }	t_game;
 
 //PARSING
@@ -104,8 +134,14 @@ unsigned int	create_trgb(char *str);
 //window.c
 void			ft_open_mlx(t_game *game);
 int				ft_x(t_game *game);
-//ft_mini_map.c
-void			ft_draw_minimap(t_game *game);
+//ft_raycasting.c
+void			ft_raycasting(t_game *game);
+//mlx_utils.c
+void			init_raycast(t_game *g, int x);
+void			ft_init_sprites(t_game *game);
+void			my_mlx_pixel_put(t_sprite *sprite, int x, int y, int color);
+//ft_draw.c
+void			draw_raycast_column(t_game *g, int x);
 
 //ERROR
 //ft_error.c

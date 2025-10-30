@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/20 23:59:56 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 18:32:12 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_build_game(t_game *game)
 	game->map_game.tex_ea.path = NULL;
 	game->map_game.height = 0;
 	game->map_game.malloc = 0;
+	game->free_path = 0;
 }
 
 void	ft_print_game(t_game *game)
@@ -55,8 +56,6 @@ int	main(int argc, char **argv)
 	ft_build_game(game);
 	ft_parsing(argc, argv, game);
 	ft_open_mlx(game);
-	mlx_hook(game->win, 17, 0, ft_x, game);
-	mlx_loop(game->mlx);
 	ft_print_game(game);
 	ft_error("", 0, game);
 	return (0);
