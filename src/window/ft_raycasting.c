@@ -46,7 +46,14 @@ static void	wall_check(t_game *g)
 			g->ray.map_y += g->ray.step_y;
 			g->ray.side = 1;
 		}
-		if (g->map_game.map[g->ray.map_y][g->ray.map_x] == '1')
+		if (g->ray.map_y >= 0 && g->ray.map_y < g->map_game.height
+			&& g->ray.map_x >= 0 && g->map_game.map[g->ray.map_y]
+			&& g->ray.map_x < (int)ft_strlen(g->map_game.map[g->ray.map_y])
+			&& g->map_game.map[g->ray.map_y][g->ray.map_x] == '1')
+			hit = 1;
+		else if (g->ray.map_y < 0 || g->ray.map_y >= g->map_game.height
+			|| g->ray.map_x < 0 || !g->map_game.map[g->ray.map_y]
+			|| g->ray.map_x >= (int)ft_strlen(g->map_game.map[g->ray.map_y]))
 			hit = 1;
 	}
 }
