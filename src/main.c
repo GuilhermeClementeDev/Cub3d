@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/23 21:11:02 by ytower           ###   ########.fr       */
+/*   Updated: 2025/10/31 16:13:50 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_build_game(t_game *game)
 	game->map_game.tex_ea.path = NULL;
 	game->map_game.height = 0;
 	game->map_game.malloc = 0;
+	game->free_path = 0;
 }
 
 void	ft_print_game(t_game *game)
@@ -49,8 +50,8 @@ void	ft_print_game(t_game *game)
 	ft_printf("Map:\n");
 	while (i < game->map_game.height)
 		ft_printf("%s\n", game->map_game.map[i++]);
-	ft_printf("Player x: %d\n", game->map_game.player.posX);
-	ft_printf("Player y: %d\n", game->map_game.player.posY);
+	ft_printf("Player x: %d\n", game->map_game.player.width);
+	ft_printf("Player y: %d\n", game->map_game.player.height);
 	ft_printf("Player y: %c\n", game->map_game.player.player_dir);
 }
 
@@ -64,8 +65,6 @@ int	main(int argc, char **argv)
 	ft_build_game(game);
 	ft_parsing(argc, argv, game);
 	ft_open_mlx(game);
-	mlx_hook(game->win, 17, 0, ft_x, game);
-	mlx_loop(game->mlx);
 	ft_print_game(game);
 	ft_error("", 0, game);
 	return (0);

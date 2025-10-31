@@ -6,12 +6,13 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/23 21:17:54 by ytower           ###   ########.fr       */
+/*   Updated: 2025/10/31 16:09:25 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+/*
 static unsigned int	get_map_pixel_color(t_game *game, int x, int y)
 {
 	if (y < 0 || y >= game->map_game.height
@@ -32,10 +33,10 @@ static unsigned int	get_map_color_at_pixel(t_game *game, int x, int y, int half)
 	if ((x - half) * (x - half) + (y - half) * (y - half) <= half * half)
 		return (get_map_pixel_color(game, map_x, map_y));
 	return (*(unsigned int *)(game->background.path + \
-	(y * game->background.line_len) + (x * (game->background.width / 8))));
+(y * game->background.line_len) + (x * (game->background.width / 8))));
 }
 
-static void	draw_minimap_pixels(t_game *game)
+void	draw_minimap_pixels(t_game *game)
 {
 	int				x;
 	int				y;
@@ -58,7 +59,7 @@ static void	draw_minimap_pixels(t_game *game)
 	}
 }
 
-static void	draw_player_minimap(t_game *game)
+void	draw_player_minimap(t_game *game)
 {
 	int				half;
 	unsigned int	*line;
@@ -83,10 +84,15 @@ static void	draw_player_minimap(t_game *game)
 
 void	ft_draw_minimap(t_game *game)
 {
-	game->minimap.img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
-	game->minimap.path = mlx_get_data_addr(game->minimap.img, \
+	if (!game->minimap.img)
+	{
+		game->minimap.img = mlx_new_image(game->mlx, \
+MINIMAP_SIZE, MINIMAP_SIZE);
+		game->minimap.path = mlx_get_data_addr(game->minimap.img, \
 &game->minimap.width, &game->minimap.line_len, &game->minimap.height);
+	}
 	draw_minimap_pixels(game);
 	draw_player_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 10, 10);
 }
+*/

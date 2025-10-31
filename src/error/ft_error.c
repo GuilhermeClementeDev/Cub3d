@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 19:01:46 by guclemen          #+#    #+#             */
-/*   Updated: 2025/09/21 00:00:28 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:47:48 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	ft_error(char *str, int n, t_game *game)
 			}
 			free(game->map_game.map);
 		}
-		ft_free_configs(game);
+		if (game->free_path)
+			ft_free_configs(game);
 		free(game);
 	}
 	exit(n);

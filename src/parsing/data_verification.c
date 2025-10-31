@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/23 21:19:42 by ytower           ###   ########.fr       */
+/*   Updated: 2025/10/31 16:17:55 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,50 @@ void	ft_verify_all_config(char **lines, t_game *game)
 	validate_xpm_file(lines, game->map_game.tex_ea.path, game);
 }
 
+static void	set_dir(t_player *p, int position)
+{
+	if (position == 1)
+	{
+		p->dir_x = 0;
+		p->dir_y = -1;
+		p->plane_x = 0.66;
+		p->plane_y = 0;
+	}
+	else if (position == 2)
+	{
+		p->dir_x = 0;
+		p->dir_y = 1;
+		p->plane_x = -0.66;
+		p->plane_y = 0;
+	}
+	else if (position == 3)
+	{
+		p->dir_x = 1;
+		p->dir_y = 0;
+		p->plane_x = 0;
+		p->plane_y = 0.66;
+	}
+}
+
 static void	ft_player(int player_x, int player_y, t_game *game)
 {
 	game->map_game.player.count++;
-	game->map_game.player.posY = player_y;
-	game->map_game.player.posX = player_x;
+	game->map_game.player.height = player_y;
+	game->map_game.player.width = player_x;
 	game->map_game.player.player_dir = game->map_game.map[player_y][player_x];
+	if (game->map_game.player.player_dir == 'N')
+		set_dir(&game->map_game.player, 1);
+	else if (game->map_game.player.player_dir == 'S')
+		set_dir(&game->map_game.player, 2);
+	else if (game->map_game.player.player_dir == 'E')
+		set_dir(&game->map_game.player, 3);
+	else if (game->map_game.player.player_dir == 'W')
+	{
+		game->map_game.player.dir_x = -1;
+		game->map_game.player.dir_y = 0;
+		game->map_game.player.plane_x = 0;
+		game->map_game.player.plane_y = -0.66;
+	}
 }
 
 static void	ft_check_chars(char **map, int height, t_game *game)
