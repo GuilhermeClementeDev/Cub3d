@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 17:11:22 by yfaustin          #+#    #+#             */
+/*   Updated: 2025/10/31 17:11:31 by yfaustin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int	exit_game(t_game *game)
@@ -5,11 +17,6 @@ int	exit_game(t_game *game)
 	mlx_destroy_image(game->mlx, game->background.img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
-
-	// free other alocated memory
-	// free(map)
-	// ...
-
 	exit(0);
 	return (0);
 }
