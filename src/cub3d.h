@@ -41,6 +41,16 @@
 # include <fcntl.h>
 # include <math.h>
 
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
 typedef struct s_player
 {
 	double			width;
@@ -121,6 +131,7 @@ typedef struct s_game
 	t_sprite	background;
 	t_sprite	minimap;
 	t_raycast	ray;
+	t_keys		keys;
 }	t_game;
 
 //PARSING
@@ -168,8 +179,12 @@ void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
 //MOVEMENT
 //movement.c
+void	handle_player_movement(t_game *game);
 int	key_press(int keycode, t_game *game);
 int	key_release(int keycode, t_game *game);
 int	exit_game(t_game *game);
+//ENGINE
+//engine.c
+int	main_loop(t_game *game);
 
 #endif
