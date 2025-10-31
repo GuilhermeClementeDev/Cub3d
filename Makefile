@@ -9,6 +9,7 @@ LIB_DIR = libs/libft
 PARSE_DIR = parsing
 WIN_DIR = window
 ERRO_DIR = error
+MOV_DIR = movement
 MLX_DIR = libs/mlx
 
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
@@ -16,6 +17,7 @@ LIBFT = $(LIB_DIR)/libft.a
 
 SRCS = \
 	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/engine.c \
 	$(SRC_DIR)/$(ERRO_DIR)/ft_error.c \
 	$(SRC_DIR)/$(ERRO_DIR)/ft_error2.c \
 	$(SRC_DIR)/$(PARSE_DIR)/parsing.c \
@@ -30,6 +32,8 @@ SRCS = \
 	$(SRC_DIR)/$(WIN_DIR)/ft_raycasting.c \
 	$(SRC_DIR)/$(WIN_DIR)/mlx_utils.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_draw.c \
+	$(SRC_DIR)/$(MOV_DIR)/hooks.c \
+	$(SRC_DIR)/$(MOV_DIR)/movement.c \
 
 OBJS = $(SRCS:.c=.o)
 
