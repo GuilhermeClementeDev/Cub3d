@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/31 16:18:15 by ytower           ###   ########.fr       */
+/*   Updated: 2025/10/31 17:10:34 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@
 # define PRESS 2
 # define RELEASE 3
 # define CLOSE 17
-# define PRESS_M (1L<<0)
-# define RELEASE_M (1L<<1)
-
 
 # include "../libs/libft/libft.h"
 # include "../libs/mlx/mlx.h"
@@ -179,12 +176,12 @@ void			ft_error_mlx(char *msg, int n, t_game *game);
 void			ft_free_sprites(int n, t_game *game);
 //MOVEMENT
 //movement.c
-void	handle_player_movement(t_game *game);
-int	key_press(int keycode, t_game *game);
-int	key_release(int keycode, t_game *game);
-int	exit_game(t_game *game);
+void			handle_player_movement(t_game *game);
+int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_game *game);
+int				exit_game(t_game *game);
 //ENGINE
 //engine.c
-int	main_loop(t_game *game);
+int				main_loop(t_game *game);
 
 #endif
