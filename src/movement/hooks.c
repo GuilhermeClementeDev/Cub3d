@@ -2,7 +2,7 @@
 
 int	exit_game(t_game *game)
 {
-	mlx_destroy_image(game->mlx, game->screen_img.img);
+	mlx_destroy_image(game->mlx, game->background.img);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 
