@@ -12,14 +12,6 @@
 
 #include "../cub3d.h"
 
-static int	ft_render_loop(t_game *game)
-{
-	ft_raycasting(game);
-	mlx_put_image_to_window(game->mlx, game->win, \
-game->background.img, 0, 0);
-	return (0);
-}
-
 void	ft_open_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -39,7 +31,5 @@ game->screen_width, game->screen_height, "Cub3d");
 game->screen_height);
 	game->background.path = mlx_get_data_addr(game->background.img, \
 &game->background.width, &game->background.line_len, &game->background.height);
-	mlx_loop_hook(game->mlx, ft_render_loop, game);
 	mlx_hook(game->win, 17, 0, ft_x, game);
-	mlx_loop(game->mlx);
 }
