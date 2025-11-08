@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/31 16:13:50 by ytower           ###   ########.fr       */
+/*   Updated: 2025/11/08 05:30:40 by yfaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_mlx_hooks(t_game *game)
 {
-	mlx_hook(game->win, PRESS, PRESS_M, key_press, game);
-	mlx_hook(game->win, RELEASE, RELEASE_M, key_release, game);
+	mlx_hook(game->win, PRESS, 1L << 0, key_press, game);
+	mlx_hook(game->win, RELEASE, 1L << 1, key_release, game);
 	mlx_hook(game->win, CLOSE, 0, exit_game, game);
 	mlx_loop_hook(game->mlx, main_loop, game);
 }
