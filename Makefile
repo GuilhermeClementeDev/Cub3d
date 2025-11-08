@@ -34,6 +34,7 @@ SRCS = \
 	$(SRC_DIR)/$(WIN_DIR)/ft_draw.c \
 	$(SRC_DIR)/$(MOV_DIR)/hooks.c \
 	$(SRC_DIR)/$(MOV_DIR)/movement.c \
+	$(SRC_DIR)/$(MOV_DIR)/movement_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
