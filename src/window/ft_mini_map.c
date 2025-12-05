@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/30 19:09:45 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:09:25 by ytower           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static unsigned int	get_map_color_at_pixel(t_game *game, int x, int y, int half)
 	int	map_x;
 	int	map_y;
 
-	map_x = game->map_game.player.width - half / 20 + x / 20;
-	map_y = game->map_game.player.height - half / 20 + y / 20;
+	map_x = game->map_game.player.posX - half / 20 + x / 20;
+	map_y = game->map_game.player.posY - half / 20 + y / 20;
 	if ((x - half) * (x - half) + (y - half) * (y - half) <= half * half)
 		return (get_map_pixel_color(game, map_x, map_y));
 	return (*(unsigned int *)(game->background.path + \

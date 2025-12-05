@@ -17,8 +17,8 @@ static int	calc_tex_x(t_game *g, t_sprite *tex)
 	int	tex_x;
 
 	tex_x = (int)(g->ray.wall_x * (double)tex->width);
-	if ((g->ray.side == 0 && g->ray.ray_dir_x > 0)
-		|| (g->ray.side == 1 && g->ray.ray_dir_y < 0))
+	if ((g->ray.side == 0 && g->ray.ray_dir_x > 0) || (g->ray.side == 1
+			&& g->ray.ray_dir_y < 0))
 		tex_x = tex->width - tex_x - 1;
 	return (tex_x);
 }
@@ -31,19 +31,19 @@ static void	draw_wall(t_game *g, int x, t_sprite *tex, int tex_x)
 	double			step;
 	double			tex_pos;
 
-	tex->path = mlx_get_data_addr(tex->img, \
-&tex->width, &tex->line_len, &tex_y);
+	tex->path = mlx_get_data_addr(tex->img, &tex->width, &tex->line_len,
+			&tex_y);
 	step = 1.0 * tex->height / g->ray.wall_height;
-	tex_pos = \
-	(g->ray.draw_start - g->screen_height / 2 + g->ray.wall_height / 2) * step;
+	tex_pos = (g->ray.draw_start - g->screen_height / 2 + g->ray.wall_height
+			/ 2) * step;
 	y = g->ray.draw_start;
 	while (y < g->ray.draw_end)
 	{
 		tex_y = (int)tex_pos;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		color = \
-*(unsigned int *)(tex->path + (tex_y * tex->line_len) + (tex_x * 4));
+		color = *(unsigned int *)(tex->path + (tex_y * tex->line_len) + (tex_x
+					* 4));
 		my_mlx_pixel_put(&g->background, x, y++, color);
 		tex_pos += step;
 	}
