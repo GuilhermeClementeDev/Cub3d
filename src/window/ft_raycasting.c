@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 16:34:16 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/30 19:24:04 by guclemen         ###   ########.fr       */
+/*   Updated: 2025/12/05 11:06:01 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,7 @@ static void	wall_check(t_game *g)
 			g->ray.map_y += g->ray.step_y;
 			g->ray.side = 1;
 		}
-		if (g->ray.map_y >= 0 && g->ray.map_y < g->map_game.height
-			&& g->ray.map_x >= 0 && g->map_game.map[g->ray.map_y]
-			&& g->ray.map_x < (int)ft_strlen(g->map_game.map[g->ray.map_y])
-			&& g->map_game.map[g->ray.map_y][g->ray.map_x] == '1')
-			hit = 1;
-		else if (g->ray.map_y < 0 || g->ray.map_y >= g->map_game.height
-			|| g->ray.map_x < 0 || !g->map_game.map[g->ray.map_y]
-			|| g->ray.map_x >= (int)ft_strlen(g->map_game.map[g->ray.map_y]))
+		if (g->map_game.map[g->ray.map_y][g->ray.map_x] == '1')
 			hit = 1;
 	}
 }

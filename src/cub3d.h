@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/11/08 05:38:19 by yfaustin         ###   ########.fr       */
+/*   Updated: 2025/12/05 11:08:55 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # define MINIMAP_SIZE 250
-# define MOVE_SPEED 0.1
-# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.025
 # define RED 0xFF0000
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
