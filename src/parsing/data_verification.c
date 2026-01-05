@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 17:34:36 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/31 16:17:55 by ytower           ###   ########.fr       */
+/*   Updated: 2026/01/05 13:36:55 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void	set_dir(t_player *p, int position)
 static void	ft_player(int player_x, int player_y, t_game *game)
 {
 	game->map_game.player.count++;
-	game->map_game.player.height = player_y;
-	game->map_game.player.width = player_x;
+	game->map_game.player.height = player_y + 0.5;
+	game->map_game.player.width = player_x + 0.5;
 	game->map_game.player.player_dir = game->map_game.map[player_y][player_x];
 	if (game->map_game.player.player_dir == 'N')
 		set_dir(&game->map_game.player, 1);
