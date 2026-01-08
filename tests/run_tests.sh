@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROG=./cub3d
+PROG=./cub3D
 FAILED=0
 
 # Função para rodar um teste
