@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:48 by guclemen          #+#    #+#             */
-/*   Updated: 2025/12/05 11:08:55 by guclemen         ###   ########.fr       */
+/*   Updated: 2026/01/08 10:27:34 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,11 +183,11 @@ int					key_release(int keycode, t_game *game);
 int					exit_game(t_game *game);
 // movement_utils.c
 int					is_valid_position(t_game *game, int map_x, int map_y);
-void				update_x_position(t_game *game, double new_pos_x,
-						double new_pos_y);
-void				update_y_position(t_game *game, double new_pos_y);
+void				update_x_position(t_game *game, double new_x, double y);
+void				update_y_position(t_game *game, double x, double new_y);
 // ENGINE
 // engine.c
 int					main_loop(t_game *game);
+void				ft_draw_minimap(t_game *game);
 
 #endif

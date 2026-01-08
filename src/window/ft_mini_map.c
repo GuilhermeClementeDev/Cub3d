@@ -6,13 +6,12 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 21:12:09 by guclemen          #+#    #+#             */
-/*   Updated: 2025/10/31 16:09:25 by ytower           ###   ########.fr       */
+/*   Updated: 2026/01/08 09:58:49 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*
 static unsigned int	get_map_pixel_color(t_game *game, int x, int y)
 {
 	if (y < 0 || y >= game->map_game.height
@@ -25,11 +24,11 @@ static unsigned int	get_map_pixel_color(t_game *game, int x, int y)
 
 static unsigned int	get_map_color_at_pixel(t_game *game, int x, int y, int half)
 {
-	int	map_x;
-	int	map_y;
+	double	map_x;
+	double	map_y;
 
-	map_x = game->map_game.player.posX - half / 20 + x / 20;
-	map_y = game->map_game.player.posY - half / 20 + y / 20;
+	map_x = game->map_game.player.width - half / 20.0 + x / 20.0;
+	map_y = game->map_game.player.height - half / 20.0 + y / 20.0;
 	if ((x - half) * (x - half) + (y - half) * (y - half) <= half * half)
 		return (get_map_pixel_color(game, map_x, map_y));
 	return (*(unsigned int *)(game->background.path + \
@@ -47,8 +46,8 @@ void	draw_minimap_pixels(t_game *game)
 	y = 0;
 	while (y < MINIMAP_SIZE)
 	{
-		line = (unsigned int *)(game->minimap.path
-				+ y * game->minimap.line_len);
+		line = (unsigned int *)(game->background.path
+				+ y * game->background.line_len);
 		x = 0;
 		while (x < MINIMAP_SIZE)
 		{
@@ -73,8 +72,8 @@ void	draw_player_minimap(t_game *game)
 		px = -5;
 		while (px <= 5)
 		{
-			line = (unsigned int *)(game->minimap.path
-					+ (half + py) * game->minimap.line_len);
+			line = (unsigned int *)(game->background.path
+					+ (half + py) * game->background.line_len);
 			line[half + px] = RED;
 			px++;
 		}
@@ -84,15 +83,6 @@ void	draw_player_minimap(t_game *game)
 
 void	ft_draw_minimap(t_game *game)
 {
-	if (!game->minimap.img)
-	{
-		game->minimap.img = mlx_new_image(game->mlx, \
-MINIMAP_SIZE, MINIMAP_SIZE);
-		game->minimap.path = mlx_get_data_addr(game->minimap.img, \
-&game->minimap.width, &game->minimap.line_len, &game->minimap.height);
-	}
 	draw_minimap_pixels(game);
 	draw_player_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img, 10, 10);
 }
-*/

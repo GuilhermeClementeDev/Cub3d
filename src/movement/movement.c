@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
+/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:12:08 by yfaustin          #+#    #+#             */
-/*   Updated: 2025/11/08 05:38:47 by yfaustin         ###   ########.fr       */
+/*   Updated: 2026/01/08 10:30:41 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void	rotate_player(t_player *player, double rot_speed)
 static void	apply_movement(t_game *game, double move_x, double move_y)
 {
 	t_player	*p;
-	double		new_pos_x;
-	double		new_pos_y;
+	double		new_x;
+	double		new_y;
 
 	p = &game->map_game.player;
-	new_pos_x = p->width + move_x;
-	new_pos_y = p->height + move_y;
-	update_x_position(game, new_pos_x, new_pos_y);
-	update_y_position(game, new_pos_y);
+	new_x = p->width + move_x;
+	new_y = p->height + move_y;
+	update_x_position(game, new_x, p->height);
+	update_y_position(game, p->width, new_y);
 }
 
 static void	calculate_movement(t_game *game, double move_speed,

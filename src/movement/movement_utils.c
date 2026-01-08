@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
+/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 05:33:39 by yfaustin          #+#    #+#             */
-/*   Updated: 2025/11/08 05:34:58 by yfaustin         ###   ########.fr       */
+/*   Updated: 2026/01/08 10:28:01 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,14 @@ int	is_valid_position(t_game *game, int map_x, int map_y)
 	return (0);
 }
 
-void	update_x_position(t_game *game, double new_pos_x, double new_pos_y)
+void	update_x_position(t_game *game, double new_x, double y)
 {
-	t_player	*p;
-	int			new_map_x;
-	int			new_map_y;
-
-	p = &game->map_game.player;
-	new_map_y = (int)new_pos_y;
-	new_map_x = (int)new_pos_x;
-	if (is_valid_position(game, new_map_x, new_map_y))
-		p->width = new_pos_x;
+	if (game->map_game.map[(int)y][(int)new_x] != '1')
+		game->map_game.player.width = new_x;
 }
 
-void	update_y_position(t_game *game, double new_pos_y)
+void	update_y_position(t_game *game, double x, double new_y)
 {
-	t_player	*p;
-	int			new_map_x;
-	int			new_map_y;
-
-	p = &game->map_game.player;
-	new_map_x = (int)p->width;
-	new_map_y = (int)new_pos_y;
-	if (is_valid_position(game, new_map_x, new_map_y))
-		p->height = new_pos_y;
+	if (game->map_game.map[(int)new_y][(int)x] != '1')
+		game->map_game.player.height = new_y;
 }

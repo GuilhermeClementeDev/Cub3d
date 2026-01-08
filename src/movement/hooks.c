@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfaustin <yfaustin@student.42.rio>         +#+  +:+       +#+        */
+/*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:11:22 by yfaustin          #+#    #+#             */
-/*   Updated: 2025/10/31 17:11:31 by yfaustin         ###   ########.fr       */
+/*   Updated: 2026/01/08 10:03:17 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exit_game(t_game *game)
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-		return (exit_game(game), 0);
+		return (ft_x(game), 0);
 	else if (keycode == KEY_W)
 		game->keys.w = 1;
 	else if (keycode == KEY_A)

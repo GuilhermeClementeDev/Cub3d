@@ -6,7 +6,7 @@
 /*   By: guclemen <guclemen@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:20:42 by guclemen          #+#    #+#             */
-/*   Updated: 2025/11/08 05:30:40 by yfaustin         ###   ########.fr       */
+/*   Updated: 2026/01/08 10:09:41 by guclemen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_mlx_hooks(t_game *game)
 {
 	mlx_hook(game->win, PRESS, 1L << 0, key_press, game);
 	mlx_hook(game->win, RELEASE, 1L << 1, key_release, game);
-	mlx_hook(game->win, CLOSE, 0, exit_game, game);
+	mlx_hook(game->win, CLOSE, 0, ft_x, game);
 	mlx_loop_hook(game->mlx, main_loop, game);
 }
 
@@ -39,7 +39,7 @@ static void	ft_build_game(t_game *game)
 	game->keys.left = 0;
 	game->keys.right = 0;
 }
-
+/* Print parse
 void	ft_print_game(t_game *game)
 {
 	int	i;
@@ -58,7 +58,7 @@ void	ft_print_game(t_game *game)
 	ft_printf("Player x: %.2f\n", game->map_game.player.width);
 	ft_printf("Player y: %.2f\n", game->map_game.player.height);
 	ft_printf("Player dir: %c\n", game->map_game.player.player_dir);
-}
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -69,7 +69,6 @@ int	main(int argc, char **argv)
 		ft_error("", 3, game);
 	ft_build_game(game);
 	ft_parsing(argc, argv, game);
-	ft_print_game(game);
 	ft_open_mlx(game);
 	init_mlx_hooks(game);
 	mlx_loop(game->mlx);

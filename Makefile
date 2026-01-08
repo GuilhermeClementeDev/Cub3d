@@ -29,6 +29,7 @@ SRCS = \
 	$(SRC_DIR)/$(PARSE_DIR)/rgb.c \
 	$(SRC_DIR)/$(PARSE_DIR)/flood_fill.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_window.c \
+	$(SRC_DIR)/$(WIN_DIR)/ft_mini_map.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_raycasting.c \
 	$(SRC_DIR)/$(WIN_DIR)/mlx_utils.c \
 	$(SRC_DIR)/$(WIN_DIR)/ft_draw.c \
@@ -49,8 +50,8 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(NAME)
-#	make val ARGS='assets/maps/test1.cub'
-	./$(NAME) assets/maps/test1.cub
+	make val ARGS='assets/maps/test1.cub'
+#	./$(NAME) assets/maps/test1.cub
 
 val: $(NAME)
 	valgrind --leak-check=full ./$(NAME) $(ARGS)
