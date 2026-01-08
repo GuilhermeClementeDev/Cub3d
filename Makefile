@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -50,8 +50,8 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(NAME)
-	make val ARGS='assets/maps/test1.cub'
-#	./$(NAME) assets/maps/test1.cub
+#	make val ARGS='assets/maps/test1.cub'
+	./$(NAME) assets/maps/test1.cub
 
 val: $(NAME)
 	valgrind --leak-check=full ./$(NAME) $(ARGS)
